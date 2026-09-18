@@ -36,7 +36,7 @@ export interface DailyTodo {
 export interface CampaignClaim {
   id: string;
   text: string;
-  /** Always true in this prototype — campaign copy, not official execution. */
+  /** Always true in this prototype: program copy, not official execution. */
   unaudited: true;
 }
 

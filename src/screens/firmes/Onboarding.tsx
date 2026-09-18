@@ -62,7 +62,7 @@ export function Onboarding() {
 
   function finish() {
     if (ejes.length < 1 || ejes.length > 2) {
-      setError('Elige 1 o 2 ejes para tu Temporada 1.');
+      setError('Elige 1 o 2 ejes para empezar.');
       return;
     }
     update({ chosenEjes: ejes, onboarded: true, municipioId });
@@ -82,16 +82,15 @@ export function Onboarding() {
       }
       subtitle={
         step === 'ejes'
-          ? 'La Temporada 1 abre más misiones en Seguridad y Salud. Los otros ejes quedan en vista previa.'
-          : 'Sin SMS real. El código de demostración es 123456.'
+          ? 'Seguridad y salud tienen más misiones. Los otros ejes están en vista previa.'
+          : 'El código de esta demostración es 123456. No hay SMS.'
       }
       showNav={false}
     >
       {step === 'phone' && (
         <div className="space-y-4">
           <GuideBubble>
-            Entra con tu celular. El código de demostración es 123456. Sin SMS
-            real y sin compra de apoyo.
+            Entra con tu celular. El código de demostración es 123456.
           </GuideBubble>
           <label className="block">
             <span className="text-sm font-medium text-gray-800">
@@ -157,7 +156,7 @@ export function Onboarding() {
         <div className="space-y-4">
           <label className="block">
             <span className="text-sm font-medium text-gray-800">
-              ¿Desde qué municipio juegas la Temporada 1?
+              ¿En qué municipio estás?
             </span>
             <select
               value={municipioId}
@@ -173,8 +172,7 @@ export function Onboarding() {
             </select>
           </label>
           <p className="text-xs text-gov-gray">
-            El municipio ancla tu gremio V1 (queda en Perfil). No frena el día
-            en Hoy.
+            El municipio agrupa el equipo local. Se ve en Perfil.
           </p>
           {error && <p className="text-sm text-gov-red">{error}</p>}
           <PrimaryButton onClick={saveMunicipio} disabled={!municipioId}>
@@ -208,7 +206,7 @@ export function Onboarding() {
                       </span>
                       {eje.season1 ? (
                         <span className="text-[10px] font-bold uppercase bg-gov-yellow text-gov-blue-dark px-2 py-0.5 rounded-full">
-                          T1
+                          90 días
                         </span>
                       ) : (
                         <span className="text-[10px] font-bold uppercase text-gov-gray">
@@ -228,7 +226,7 @@ export function Onboarding() {
             <ClaimMark compact />
             <p className="text-xs text-amber-950 mt-1.5 leading-relaxed">
               Elegir un eje no significa que el gobierno ya avanzó en esa materia.
-              Solo ordena tus misiones de aprendizaje.
+              Solo ordena qué estudias primero.
             </p>
           </div>
           {error && <p className="text-sm text-gov-red">{error}</p>}
@@ -236,7 +234,7 @@ export function Onboarding() {
             onClick={finish}
             disabled={ejes.length < 1 || ejes.length > 2}
           >
-            Empezar Temporada 1
+            Empezar
           </PrimaryButton>
         </div>
       )}

@@ -1,10 +1,10 @@
 # Firmes · Mi Patria Milagro
 
-Prototipo clickeable (MVP) de adopción ciudadana **Firmes** para el programa de gobierno *Patria Milagro* (De la Espriella / Restrepo 2026–2030), más el episodio previo de priorización del PND.
+Prototipo clickeable de **Firmes** para el programa de gobierno *Patria Milagro* (De la Espriella / Restrepo 2026–2030), más la priorización previa del PND.
 
-Mobile-first · Español Colombia · Estilo institucional GOV.CO-inspired · Sin backend.
+Mobile-first · Español Colombia · Estilo institucional GOV.CO · Sin backend.
 
-**Los Firmes no se compran.** Son puntos educativos. No hay dinero ni «pagar para apoyar».
+**Los Firmes no se compran.** Son puntos de estudio. No hay dinero ni «pagar para apoyar».
 
 Demo pública: [https://earauzt.github.io/Mi-patria-milagro/](https://earauzt.github.io/Mi-patria-milagro/)
 
@@ -23,13 +23,13 @@ npm run build
 npm run preview
 ```
 
-## OTP de demo
+## OTP de demostración
 
-Código mock: **`123456`**. No hay SMS real.
+Código: **`123456`**. No hay SMS real.
 
-## Firmes · Temporada 1
+## Firmes · Primeros 90 días
 
-Primeros 90 días, foco **Seguridad** y **Salud**. Home post-login = **Hoy** (racha 🔥, una misión del día, pendientes tipo checklist). Guía **Pilo**. Sin canje monetario ni gift cards.
+Foco **Seguridad** y **Salud**. Después de entrar, **Hoy** muestra racha, saldo de Firmes, una misión del día y pendientes. Guía corta (sin personaje de juego). Sin canje ni gift cards.
 
 Seis ejes del portal:
 
@@ -40,16 +40,16 @@ Seis ejes del portal:
 5. Educación
 6. Estado transparente
 
-Toda cifra de programa en la UI lleva la marca **«Dato de programa — no auditado»**. Este prototipo no publica métricas de progreso gubernamental.
+Toda cifra de programa en la UI lleva la marca **«Fuente: propuesta de programa (sin verificar)»**. Este prototipo no publica métricas de progreso gubernamental.
 
 Ruta de clic en [DEMO.md](./DEMO.md).
 
-## Episodio PND
+## Priorización PND
 
 Sigue disponible desde el portal: *Mi Patria Milagro / priorizar PND* (`/pnd`).
 
 ## Notas
 
-- Estado de Firmes y del episodio PND en `localStorage`.
-- Reportes: foto local + geo simulada. Sin denuncia real.
+- Estado de Firmes y del PND en `localStorage`.
+- Reportes: foto local + ubicación ilustrativa. Sin denuncia real.
 - Sin logos oficiales del DNP.

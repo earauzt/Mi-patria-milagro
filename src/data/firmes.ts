@@ -29,7 +29,7 @@ export const FIRMES_EJES: EjeDef[] = [
     corto: 'Seguridad',
     season1: true,
     blurb:
-      'Control territorial, choque de 90 días y ofensiva a narcotráfico, extorsión y secuestro.',
+      'Presencia del Estado en el territorio, plan de 90 días y prioridad contra narcotráfico, extorsión y secuestro.',
   },
   {
     id: 'salud',
@@ -37,7 +37,7 @@ export const FIRMES_EJES: EjeDef[] = [
     corto: 'Salud',
     season1: true,
     blurb:
-      'Rescate del sistema, ADRES, historia clínica digital y acceso a medicamentos.',
+      'Sistema de salud, ADRES, historia clínica digital y acceso a medicamentos.',
   },
   {
     id: 'economia',
@@ -77,7 +77,7 @@ export const DAILY_TODOS: DailyTodo[] = [
     text: 'Terminar la misión del día',
     kind: 'mission',
     firmesReward: 0,
-    hint: 'El quiz corto es el corazón de Hoy. Suma Firmes al instante.',
+    hint: 'El quiz de hoy suma Firmes al terminar.',
   },
   {
     id: 'todo-denuncia',
@@ -95,7 +95,7 @@ export const DAILY_TODOS: DailyTodo[] = [
   },
   {
     id: 'todo-marca',
-    text: 'Lee un dato de programa con la marca «no auditado»',
+    text: 'Lee una cifra del programa marcada como sin verificar',
     kind: 'check',
     firmesReward: 5,
     hint: 'Las cifras del programa no son progreso de gobierno.',
@@ -111,9 +111,9 @@ export const MISSIONS: Mission[] = [
     id: 'seg-quiz-90',
     ejeId: 'seguridad',
     type: 'quiz',
-    title: 'El choque de 90 días',
+    title: 'Los primeros 90 días',
     summary:
-      'Aprende qué propone el programa para recuperar el control territorial en la Temporada 1.',
+      'Qué propone el programa para la seguridad en el territorio, en los primeros 90 días.',
     firmesReward: 40,
     firmesKind: 'aprendidos',
     season1Focus: true,
@@ -121,7 +121,7 @@ export const MISSIONS: Mission[] = [
     claims: [
       claim(
         'coca-330k',
-        'El programa afirma destruir ~330.000 hectáreas de coca (fumigación, erradicación y otras herramientas).',
+        'El programa anuncia destruir cerca de 330.000 hectáreas de coca, con fumigación, erradicación y otras herramientas.',
       ),
     ],
     badgeId: 'choque-90',
@@ -130,14 +130,14 @@ export const MISSIONS: Mission[] = [
       {
         id: 'q1',
         prompt:
-          'Según la propuesta del programa, ¿cuál es el plazo del choque inicial de seguridad?',
+          'Según la propuesta del programa, ¿cuál es el plazo del plan inicial de seguridad?',
         options: [
           { id: 'a', text: '30 días', correct: false },
           { id: 'b', text: '90 días', correct: true },
           { id: 'c', text: 'Los cuatro años de gobierno', correct: false },
         ],
         explainer:
-          'El portal de propuestas habla de un plan de choque en los primeros 90 días. Eso es un anuncio de programa, no un resultado medido.',
+          'El portal habla de un plan en los primeros 90 días. Es un anuncio, no un resultado medido.',
       },
       {
         id: 'q2',
@@ -146,28 +146,28 @@ export const MISSIONS: Mission[] = [
           { id: 'a', text: 'Un resultado oficial ya ejecutado por el Estado', correct: false },
           {
             id: 'b',
-            text: 'Un dato de programa — no auditado',
+            text: 'Una cifra del programa, sin verificar',
             correct: true,
           },
           { id: 'c', text: 'Una métrica de Firmes verificados', correct: false },
         ],
         explainer:
-          'En Firmes esa cifra siempre lleva la marca «Dato de programa — no auditado». No es progreso de gobierno.',
+          'En Firmes esa cifra se marca como propuesta de programa, sin verificar. No es un resultado de gobierno.',
       },
       {
         id: 'q3',
-        prompt: '¿Qué delitos prioriza el programa de gobierno en el eje Seguridad?',
+        prompt: '¿Qué delitos prioriza el programa en el eje de Seguridad?',
         options: [
           { id: 'a', text: 'Solo contrabando de mercancías', correct: false },
           {
             id: 'b',
-            text: 'Narcotráfico, extorsión y secuestro, con control territorial',
+            text: 'Narcotráfico, extorsión y secuestro, con presencia del Estado en el territorio',
             correct: true,
           },
           { id: 'c', text: 'Únicamente delitos informáticos', correct: false },
         ],
         explainer:
-          'El programa habla de control territorial y de un bloque de búsqueda contra la extorsión. Sigue siendo propuesta, no ejecución.',
+          'El programa habla de seguridad en el territorio y de un bloque de búsqueda contra la extorsión. Sigue siendo propuesta, no ejecución.',
       },
     ],
   },
@@ -177,7 +177,7 @@ export const MISSIONS: Mission[] = [
     type: 'checklist',
     title: 'Lista ciudadana · 90 días',
     summary:
-      'Marca acciones cívicas de la Temporada 1. No sustituye la denuncia formal ni mide resultados oficiales.',
+      'Marca acciones cívicas de los primeros 90 días. No sustituye la denuncia formal ni mide resultados oficiales.',
     firmesReward: 30,
     firmesKind: 'aprendidos',
     season1Focus: true,
@@ -193,7 +193,7 @@ export const MISSIONS: Mission[] = [
       { id: 'c2', text: 'Hablé en casa sobre no pagar extorsión y registrar intentos.' },
       { id: 'c3', text: 'Revisé si mi cuadra tiene alumbrado y rutas seguras de noche.' },
       { id: 'c4', text: 'Anoté un hecho que sí reportaría (sin datos sensibles en Firmes).' },
-      { id: 'c5', text: 'Leí que el choque de 90 días es propuesta de programa, no un tablero oficial.' },
+      { id: 'c5', text: 'Leí que el plan de 90 días es propuesta de programa, no un tablero oficial.' },
     ],
   },
   {
@@ -209,7 +209,7 @@ export const MISSIONS: Mission[] = [
     claims: [
       claim(
         'secuestro-extorsion',
-        'El programa prioriza extorsión y secuestro en el choque de seguridad.',
+        'El programa prioriza extorsión y secuestro en el plan de seguridad de 90 días.',
       ),
     ],
     badgeId: 'reportero',
@@ -220,9 +220,9 @@ export const MISSIONS: Mission[] = [
     id: 'sal-quiz-rescate',
     ejeId: 'salud',
     type: 'quiz',
-    title: 'Rescate del sistema de salud',
+    title: 'El sistema de salud',
     summary:
-      'Estudia las promesas de choque financiero, ADRES e historia clínica digital.',
+      'Estudia el anuncio de financiación, ADRES e historia clínica digital.',
     firmesReward: 40,
     firmesKind: 'aprendidos',
     season1Focus: true,
@@ -230,7 +230,7 @@ export const MISSIONS: Mission[] = [
     claims: [
       claim(
         'salud-10b',
-        'El programa anuncia un plan de choque de COP $10 billones para rescatar el sistema de salud.',
+        'El programa anuncia un plan de COP $10 billones para el sistema de salud.',
       ),
     ],
     badgeId: 'rescate-salud',
@@ -238,14 +238,14 @@ export const MISSIONS: Mission[] = [
     quiz: [
       {
         id: 'q1',
-        prompt: 'El monto de COP $10 billones para el rescate de salud es…',
+        prompt: 'El monto de COP $10 billones para el sistema de salud es…',
         options: [
           { id: 'a', text: 'Presupuesto ejecutado y auditado de 2026', correct: false },
-          { id: 'b', text: 'Dato de programa — no auditado', correct: true },
+          { id: 'b', text: 'Cifra del programa, sin verificar', correct: true },
           { id: 'c', text: 'Un Firmes verificado de tu municipio', correct: false },
         ],
         explainer:
-          'Es una pretensión de programa. Firmes no inventa avance gubernamental ni lo convierte en meta cumplida.',
+          'Es una pretensión del programa. Firmes no la convierte en meta cumplida.',
       },
       {
         id: 'q2',
@@ -260,7 +260,7 @@ export const MISSIONS: Mission[] = [
           { id: 'c', text: 'Eliminar por completo el sistema mixto', correct: false },
         ],
         explainer:
-          'El portal habla de sistema mixto, ADRES, auditorías e historia clínica digital. Sigue sin estar auditado como resultado.',
+          'El portal habla de sistema mixto, ADRES, auditorías e historia clínica digital. Sigue sin estar verificado como resultado.',
       },
       {
         id: 'q3',
@@ -297,7 +297,7 @@ export const MISSIONS: Mission[] = [
       { id: 'c2', text: 'Guardé soportes (fórmula, tutelas o radicados) en un solo lugar.' },
       { id: 'c3', text: 'Identifiqué Superintendencia de Salud o personería para reclamar.' },
       { id: 'c4', text: 'Leí que ADRES e historia clínica digital son anuncios, no un sistema ya unificado.' },
-      { id: 'c5', text: 'Recordé que COP $10 billones es dato de programa — no auditado.' },
+      { id: 'c5', text: 'Recordé que COP $10 billones es cifra del programa, sin verificar.' },
     ],
   },
   {
@@ -338,7 +338,7 @@ export const MISSIONS: Mission[] = [
           { id: 'a', text: 'Cifras ya logradas y certificadas por el Minhacienda', correct: false },
           {
             id: 'b',
-            text: 'Pretensiones de programa — no auditadas; no son recorte ejecutado',
+            text: 'Pretensiones del programa, sin verificar; no son recorte ejecutado',
             correct: true,
           },
           { id: 'c', text: 'Indicadores que Firmes mide en tiempo real', correct: false },
@@ -353,7 +353,7 @@ export const MISSIONS: Mission[] = [
           { id: 'a', text: 'Las publica como tablero oficial de gobierno', correct: false },
           {
             id: 'b',
-            text: 'Las muestra con la marca «Dato de programa — no auditado»',
+            text: 'Las marca como propuesta de programa, sin verificar',
             correct: true,
           },
           { id: 'c', text: 'Las convierte en dinero para quien las comparta', correct: false },
@@ -384,7 +384,7 @@ export const MISSIONS: Mission[] = [
         prompt: 'El 8,7% de crédito del programa es…',
         options: [
           { id: 'a', text: 'La tasa vigente del Banco Agrario para todos', correct: false },
-          { id: 'b', text: 'Un dato de programa — no auditado', correct: true },
+          { id: 'b', text: 'Una cifra del programa, sin verificar', correct: true },
           { id: 'c', text: 'Un Firmes que puedes cobrar en caja', correct: false },
         ],
         explainer:
@@ -403,7 +403,7 @@ export const MISSIONS: Mission[] = [
           { id: 'c', text: 'Cerrar el crédito de fomento', correct: false },
         ],
         explainer:
-          'Son piezas del portal de propuestas. Temporada 1 las deja en vista previa, no como avance rural oficial.',
+          'Son piezas del portal de propuestas. En los primeros 90 días quedan en vista previa, no como avance rural oficial.',
       },
     ],
   },
@@ -448,7 +448,7 @@ export const MISSIONS: Mission[] = [
         prompt: 'Los créditos al ~2% para educación o vivienda son…',
         options: [
           { id: 'a', text: 'Líneas ya desembolsadas a tu cédula', correct: false },
-          { id: 'b', text: 'Dato de programa — no auditado', correct: true },
+          { id: 'b', text: 'Cifra del programa, sin verificar', correct: true },
           { id: 'c', text: 'El precio de comprar Firmes', correct: false },
         ],
         explainer:
@@ -491,7 +491,7 @@ export const MISSIONS: Mission[] = [
       },
       {
         id: 'q2',
-        prompt: 'Un certificado de Temporada 1 en Firmes demuestra…',
+        prompt: 'Un certificado de los primeros 90 días en Firmes demuestra…',
         options: [
           { id: 'a', text: 'Que pagaste por apoyar al gobierno', correct: false },
           {
@@ -512,11 +512,11 @@ export const BADGES: BadgeDef[] = [
   {
     id: 'primer-paso',
     name: 'Primer paso',
-    description: 'Completaste tu primera misión de la Temporada 1.',
+    description: 'Completaste tu primera misión de los primeros 90 días.',
   },
   {
     id: 'choque-90',
-    name: 'Choque de 90 días',
+    name: 'Primeros 90 días',
     description: 'Estudiaste la propuesta de seguridad de los primeros 90 días.',
     ejeId: 'seguridad',
   },
@@ -529,12 +529,12 @@ export const BADGES: BadgeDef[] = [
   {
     id: 'reportero',
     name: 'Reportero ciudadano',
-    description: 'Enviaste un reporte demo (verificación simulada).',
+    description: 'Enviaste un reporte de prueba (verificación simulada).',
   },
   {
     id: 'rescate-salud',
-    name: 'Rescate en salud',
-    description: 'Estudiaste el anuncio de choque de COP $10 billones y ADRES.',
+    name: 'Salud: 90 días',
+    description: 'Estudiaste el anuncio de COP $10 billones y ADRES.',
     ejeId: 'salud',
   },
   {
@@ -551,7 +551,7 @@ export const BADGES: BadgeDef[] = [
   },
   {
     id: 'temporada-1',
-    name: 'Certificado Temporada 1',
+    name: 'Certificado de los 90 días',
     description:
       'Al menos 3 misiones, con Seguridad y Salud. No es apoyo político pagado.',
   },
@@ -560,18 +560,18 @@ export const BADGES: BadgeDef[] = [
 export const EXPLAINERS: ExplainerDef[] = [
   {
     id: 'exp-seguridad-90',
-    title: 'Qué es (y no es) el choque de 90 días',
-    body: 'El programa describe 90 días para recuperar control territorial frente a narcotráfico, extorsión y secuestro, y menciona ~330.000 ha de coca. En Firmes eso se estudia como propuesta. No hay tablero de hectáreas erradicadas ni de capturas: esos números no están auditados aquí.',
+    title: 'Qué es (y no es) el plan de 90 días',
+    body: 'El programa describe 90 días para recuperar seguridad en el territorio frente a narcotráfico, extorsión y secuestro, y menciona cerca de 330.000 ha de coca. En Firmes eso se estudia como propuesta. No hay tablero de hectáreas ni de capturas: esos números no están verificados aquí.',
   },
   {
     id: 'exp-salud-10b',
     title: 'COP $10 billones, ADRES e historia clínica',
-    body: 'El programa de gobierno habla de un choque de COP $10 billones, ADRES fortalecida, auditorías e historia clínica digital. Completar misiones de Salud suma Firmes aprendidos. No prueba que el dinero se haya apropiado ni que la historia clínica única exista.',
+    body: 'El programa de gobierno habla de COP $10 billones, ADRES, auditorías e historia clínica digital. Terminar misiones de Salud suma Firmes aprendidos. No prueba que el dinero se haya apropiado ni que la historia clínica única exista.',
   },
   {
     id: 'exp-economia-cuidado',
     title: 'Cómo leer las cifras económicas',
-    body: '4×1000, Top 25, crecimiento al 7% y un ajuste cercano a COP $70 billones aparecen en textos del programa, a veces junto a recortes del tamaño del Estado. Firmes las etiqueta como no auditadas. No uses esta app como fuente de ejecución fiscal ni de «logros» de gobierno.',
+    body: '4×1000, Top 25, crecimiento al 7% y un ajuste cercano a COP $70 billones aparecen en textos del programa, a veces junto a recortes del Estado. Firmes las marca como sin verificar. No uses esta app como fuente de ejecución fiscal ni de logros de gobierno.',
   },
 ];
 

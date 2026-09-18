@@ -1,6 +1,5 @@
 import { Link } from 'react-router-dom';
 import { ClaimMark } from '../components/ClaimMark';
-import { GuideBubble } from '../components/Mascot';
 
 export function Landing() {
   return (
@@ -16,36 +15,27 @@ export function Landing() {
           </p>
           <h1 className="text-2xl font-bold leading-tight">Firmes</h1>
           <p className="text-sm text-blue-100 mt-1 leading-relaxed">
-            Adopción ciudadana de las propuestas. Puntos educativos, no compra de
-            apoyo político.
+            Estudia las propuestas de los primeros 90 días. Los Firmes son
+            puntos de estudio, no dinero.
           </p>
         </div>
       </header>
 
       <main className="flex-1 overflow-y-auto px-4 py-5 space-y-4">
-        <GuideBubble>
-          Hoy es simple: racha, una misión del día y tus pendientes. Sin canje
-          de dinero.
-        </GuideBubble>
-        <div className="rounded-2xl border-2 border-gov-blue bg-white p-4 shadow-sm">
-          <p className="text-[11px] font-bold uppercase tracking-wide text-gov-blue">
-            Temporada 1
+        <div className="rounded-md border border-gov-blue bg-white p-4">
+          <p className="text-[11px] font-semibold uppercase tracking-wide text-gov-blue">
+            Primeros 90 días
           </p>
           <h2 className="text-lg font-bold text-gray-900 mt-1">
-            Firmes · 90 días
+            Seguridad y salud
           </h2>
           <p className="text-sm text-gov-gray mt-1.5 leading-relaxed">
-            Foco en <strong>Seguridad</strong> y <strong>Salud</strong>. Quiz
-            corto, Firmes al instante y certificado simbólico.
+            Una misión al día, una lista corta y un certificado de estudio. Los
+            Firmes no se compran ni se canjean.
           </p>
-          <ul className="mt-3 text-sm text-gray-800 space-y-1">
-            <li>· Misión del día + pendientes (estilo Hoy)</li>
-            <li>· Quiz de propuestas con marca «no auditado»</li>
-            <li>· Sin gift cards ni compra de apoyo</li>
-          </ul>
           <Link
             to="/firmes"
-            className="mt-4 flex w-full items-center justify-center rounded-xl bg-gov-blue text-white font-bold py-3.5 shadow-[0_4px_0_#072861]"
+            className="mt-4 flex w-full items-center justify-center rounded-md bg-gov-blue text-white font-semibold py-3"
           >
             Entrar a Firmes
           </Link>
@@ -53,43 +43,40 @@ export function Landing() {
 
         <Link
           to="/pnd"
-          className="block rounded-xl border border-gov-border bg-white p-4 hover:border-gov-blue/40"
+          className="block rounded-md border border-gov-border bg-white p-4"
         >
-          <p className="text-[11px] font-bold uppercase tracking-wide text-gov-gray">
-            Episodio anterior
+          <p className="text-[11px] font-semibold uppercase tracking-wide text-gov-gray">
+            También disponible
           </p>
           <h2 className="text-base font-bold text-gray-900 mt-1">
             Mi Patria Milagro · priorizar PND
           </h2>
           <p className="text-sm text-gov-gray mt-1 leading-relaxed">
-            Reparte 100 fichas, elige temáticas y mira el tablero demo de
-            Colombia en vivo.
+            Reparte 100 fichas, elige temáticas y mira el tablero de Colombia.
           </p>
           <p className="text-sm font-semibold text-gov-blue mt-2">
-            Abrir episodio PND →
+            Abrir priorización PND
           </p>
         </Link>
 
-        <section className="rounded-xl border border-amber-200 bg-amber-50 p-4">
-          <h3 className="text-sm font-bold text-amber-950">
-            Transparencia desde el primer toque
-          </h3>
+        <section className="rounded-md border border-amber-200 bg-amber-50 p-4">
+          <h3 className="text-sm font-bold text-amber-950">Sobre las cifras</h3>
           <p className="text-sm text-amber-950/90 mt-1.5 leading-relaxed">
-            Toda cifra de programa político lleva esta marca. No es progreso de
-            gobierno ni dato auditado.
+            Las cifras que ves aquí son del programa. No están verificadas y no
+            miden avance de gobierno.
           </p>
           <div className="mt-2">
             <ClaimMark />
           </div>
           <p className="text-xs text-amber-900 mt-3 leading-relaxed">
-            Los Firmes no se compran. No hay dinero, ni «pagar para apoyar». El
-            certificado de temporada acredita que estudiaste propuestas.
+            Los Firmes no se compran. No hay dinero ni «pagar para apoyar». El
+            certificado acredita que estudiaste propuestas.
           </p>
           <Link
             to="/firmes/transparencia"
             className="inline-block mt-2 text-sm font-semibold text-gov-blue underline"
           >
-            Leer las reglas
+            Cómo se ganan Firmes
           </Link>
         </section>
       </main>
