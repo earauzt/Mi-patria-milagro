@@ -3,6 +3,7 @@ import { ClaimMark } from '../../components/ClaimMark';
 import { Coin, FirmesLayout } from '../../components/FirmesLayout';
 import { GuideBubble } from '../../components/Mascot';
 import { getBadge, getExplainer } from '../../data/firmes';
+import { diasLabel } from '../../domain/firmes';
 import { useFirmes } from '../../hooks/useFirmes';
 
 export function Reward() {
@@ -48,8 +49,7 @@ export function Reward() {
         </p>
         {reward.streakIncremented && (
           <p className="mt-2 text-sm text-gray-800">
-            Racha: {reward.streakDays} día
-            {reward.streakDays === 1 ? '' : 's'}
+            Racha: {diasLabel(reward.streakDays)}
           </p>
         )}
       </div>

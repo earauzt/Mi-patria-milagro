@@ -220,7 +220,7 @@ export function FireStreak({ days }: { days: number }) {
         className="inline-flex h-8 w-8 items-center justify-center rounded-md bg-orange-50 text-[11px] font-bold text-orange-800 border border-orange-200"
         aria-hidden
       >
-        días
+        {days === 1 ? 'día' : 'días'}
       </span>
       <span>
         <span className="font-black tabular-nums text-gray-900 text-xl leading-none">

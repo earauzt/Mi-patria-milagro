@@ -2,7 +2,7 @@ import { ClaimMark } from '../../components/ClaimMark';
 import { FirmesLayout } from '../../components/FirmesLayout';
 import { getMunicipio } from '../../data/catalog';
 import { guildForMunicipio } from '../../data/firmes';
-import { totalFirmes } from '../../domain/firmes';
+import { diasLabel, totalFirmes } from '../../domain/firmes';
 import { useFirmes } from '../../hooks/useFirmes';
 
 export function Guild() {
@@ -66,7 +66,7 @@ export function Guild() {
               <div>
                 <p className="text-sm font-semibold text-gray-900">{row.name}</p>
                 <p className="text-[11px] text-gov-gray">
-                  Racha {row.streak} días
+                  Racha {diasLabel(row.streak)}
                 </p>
               </div>
             </div>

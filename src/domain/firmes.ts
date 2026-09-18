@@ -185,6 +185,10 @@ export function yesterdayKey(d = new Date()): string {
   return todayKey(prev);
 }
 
+export function diasLabel(n: number): string {
+  return n === 1 ? '1 día' : `${n} días`;
+}
+
 export function nextStreak(
   lastStreakDate: string | null,
   streakDays: number,

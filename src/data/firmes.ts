@@ -70,7 +70,7 @@ export const FIRMES_EJES: EjeDef[] = [
   },
 ];
 
-/** Civic Daily To-Dos for Hoy (Zivic-style). Not government KPIs. */
+/** Civic daily to-dos for Hoy. Not government KPIs. */
 export const DAILY_TODOS: DailyTodo[] = [
   {
     id: 'todo-mision',

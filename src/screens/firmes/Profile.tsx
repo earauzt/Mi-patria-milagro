@@ -3,7 +3,7 @@ import { ClaimMark } from '../../components/ClaimMark';
 import { Coin, FirmesLayout, SecondaryButton } from '../../components/FirmesLayout';
 import { getMunicipio } from '../../data/catalog';
 import { BADGES, EXPLAINERS, getBadge } from '../../data/firmes';
-import { totalFirmes } from '../../domain/firmes';
+import { diasLabel, totalFirmes } from '../../domain/firmes';
 import { useFirmes } from '../../hooks/useFirmes';
 
 export function Profile() {
@@ -43,7 +43,7 @@ export function Profile() {
           </div>
           <div>
             <dt className="text-gov-gray text-xs">Racha</dt>
-            <dd className="font-bold tabular-nums">{state.streakDays} días</dd>
+            <dd className="font-bold tabular-nums">{diasLabel(state.streakDays)}</dd>
           </div>
           <div>
             <dt className="text-gov-gray text-xs">Misiones</dt>

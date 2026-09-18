@@ -9,6 +9,7 @@ import {
 import { GuideBubble } from '../../components/Mascot';
 import { DAILY_TODOS, getMission, MISSIONS } from '../../data/firmes';
 import {
+  diasLabel,
   hasCompleted,
   hasDailyTodo,
   pickMissionDelDia,
@@ -37,7 +38,7 @@ export function Home() {
   const greet =
     state.streakDays === 0
       ? 'Empieza por la misión del día.'
-      : `Llevas ${state.streakDays} día${state.streakDays === 1 ? '' : 's'} seguido${state.streakDays === 1 ? '' : 's'}. Sigue con la misión de hoy.`;
+      : `Llevas ${diasLabel(state.streakDays)} seguido${state.streakDays === 1 ? '' : 's'}. Sigue con la misión de hoy.`;
 
   return (
     <FirmesLayout title="Hoy" hideHeading>
