@@ -16,6 +16,8 @@ export const CITIZEN_FLOW: ScreenId[] = [
   'vara',
 ];
 
+export const ALL_SCREENS: ScreenId[] = [...CITIZEN_FLOW, 'cierre', 'tablero'];
+
 export const SCREEN_LABELS: Record<ScreenId, string> = {
   entrar: 'Entrar',
   fichas: '100 fichas',
@@ -108,6 +110,7 @@ export function createInitialEpisode(): EpisodeState {
   };
 }
 
-export function fichasSum(fichas: Record<EjeId, number>): number {
+export function fichasSum(fichas: Record<EjeId, number> | undefined | null): number {
+  if (!fichas) return 0;
   return (Object.values(fichas) as number[]).reduce((a, b) => a + b, 0);
 }

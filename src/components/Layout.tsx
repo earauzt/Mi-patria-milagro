@@ -8,6 +8,7 @@ interface LayoutProps {
   title: string;
   subtitle?: string;
   showProgress?: boolean;
+  actions?: ReactNode;
 }
 
 export function Layout({
@@ -15,6 +16,7 @@ export function Layout({
   title,
   subtitle,
   showProgress = true,
+  actions,
 }: LayoutProps) {
   const { screen } = useEpisode();
   const flowIndex = CITIZEN_FLOW.indexOf(screen);
@@ -29,7 +31,7 @@ export function Layout({
   return (
     <div className="app-shell">
       {/* GOV.CO-style top bar */}
-      <header className="bg-gov-blue text-white shrink-0">
+      <header className="bg-gov-blue text-white shrink-0 pt-[env(safe-area-inset-top)]">
         <div className="flex items-center justify-between px-4 py-2 text-xs tracking-wide">
           <span className="font-semibold uppercase">GOV.CO</span>
           <Link to="/" className="opacity-90 underline-offset-2 hover:underline">
@@ -61,6 +63,7 @@ export function Layout({
               className="h-full bg-gov-blue transition-all duration-300 rounded-full"
               style={{ width: `${progress}%` }}
               role="progressbar"
+              aria-label="Progreso del episodio"
               aria-valuenow={Math.round(progress)}
               aria-valuemin={0}
               aria-valuemax={100}
@@ -69,7 +72,7 @@ export function Layout({
         </div>
       )}
 
-      <main className="flex-1 overflow-y-auto px-4 py-5">
+      <main className="flex-1 min-h-0 overflow-y-auto px-4 py-5">
         <h2 className="text-xl font-bold text-gray-900 mb-1">{title}</h2>
         {subtitle && (
           <p className="text-sm text-gov-gray mb-5 leading-relaxed">{subtitle}</p>
@@ -77,7 +80,13 @@ export function Layout({
         {children}
       </main>
 
-      <footer className="shrink-0 border-t border-gov-border bg-white px-4 py-2 text-center text-[10px] text-gov-gray">
+      {actions && (
+        <div className="shrink-0 border-t border-gov-border bg-gov-bg px-4 pt-3 pb-3">
+          {actions}
+        </div>
+      )}
+
+      <footer className="shrink-0 border-t border-gov-border bg-white px-4 py-2 pb-[max(0.5rem,env(safe-area-inset-bottom))] text-center text-[10px] text-gov-gray">
         Demo ilustrativa · Sin vínculo oficial DNP · Datos de demostración
       </footer>
     </div>
@@ -100,7 +109,7 @@ export function PrimaryButton({
       type={type}
       onClick={onClick}
       disabled={disabled}
-      className="w-full rounded-lg bg-gov-blue text-white font-semibold py-3.5 px-4 text-base shadow-sm hover:bg-gov-blue-dark transition-colors focus:outline-none focus:ring-2 focus:ring-gov-blue focus:ring-offset-2"
+      className="w-full rounded-lg bg-gov-blue text-white font-semibold py-3.5 px-4 text-base shadow-sm hover:bg-gov-blue-dark transition-colors focus:outline-none focus:ring-2 focus:ring-gov-blue focus:ring-offset-2 disabled:opacity-45 disabled:cursor-not-allowed disabled:hover:bg-gov-blue"
     >
       {children}
     </button>

@@ -5,31 +5,39 @@ import { useEpisode } from '../hooks/useEpisode';
 
 const OTP_DEMO = '123456';
 
+/** 10 dígitos móviles CO. Si pegan +57, se recorta el indicativo (el campo ya muestra +57). */
+function toCoMobile(raw: string): string {
+  let digits = raw.replace(/\D/g, '');
+  if (digits.startsWith('57') && digits.length > 10) digits = digits.slice(2);
+  return digits.slice(0, 10);
+}
+
+function formatPhone(raw: string) {
+  const digits = toCoMobile(raw);
+  if (digits.length <= 3) return digits;
+  if (digits.length <= 6) return `${digits.slice(0, 3)} ${digits.slice(3)}`;
+  return `${digits.slice(0, 3)} ${digits.slice(3, 6)} ${digits.slice(6)}`;
+}
+
 export function Entrar() {
   const { episode, update, setScreen } = useEpisode();
   const [step, setStep] = useState<'phone' | 'otp' | 'municipio'>(
     episode.otpVerified ? 'municipio' : 'phone',
   );
-  const [phone, setPhone] = useState(episode.phone || '');
+  const [phone, setPhone] = useState(toCoMobile(episode.phone || ''));
   const [otp, setOtp] = useState('');
   const [municipioId, setMunicipioId] = useState(episode.municipioId || '');
   const [error, setError] = useState('');
 
-  function formatPhone(raw: string) {
-    const digits = raw.replace(/\D/g, '').slice(0, 10);
-    if (digits.length <= 3) return digits;
-    if (digits.length <= 6) return `${digits.slice(0, 3)} ${digits.slice(3)}`;
-    return `${digits.slice(0, 3)} ${digits.slice(3, 6)} ${digits.slice(6)}`;
-  }
-
   function sendOtp() {
-    const digits = phone.replace(/\D/g, '');
+    const digits = toCoMobile(phone);
     if (digits.length !== 10 || !digits.startsWith('3')) {
       setError('Ingresa un celular colombiano válido (10 dígitos, inicia en 3).');
       return;
     }
     setError('');
-    update({ phone: digits });
+    update({ phone: digits, otpVerified: false });
+    setPhone(digits);
     setStep('otp');
   }
 
@@ -44,7 +52,7 @@ export function Entrar() {
   }
 
   function continueNext() {
-    if (!municipioId) {
+    if (!MUNICIPIOS.some((m) => m.id === municipioId)) {
       setError('Selecciona tu municipio.');
       return;
     }
@@ -58,36 +66,54 @@ export function Entrar() {
       subtitle="Tu aporte queda registrado de forma agregada. Sin SMS real: usa el código demo."
     >
       {step === 'phone' && (
-        <div className="space-y-4">
+        <form
+          className="space-y-4"
+          onSubmit={(e) => {
+            e.preventDefault();
+            sendOtp();
+          }}
+        >
           <label className="block">
             <span className="text-sm font-medium text-gray-800">
               Celular colombiano
             </span>
-            <div className="mt-1.5 flex rounded-lg border border-gov-border bg-white overflow-hidden focus-within:ring-2 focus-within:ring-gov-blue">
-              <span className="px-3 py-3 bg-gray-50 text-gov-gray text-sm border-r border-gov-border">
-                +57
-              </span>
-              <input
-                type="tel"
-                inputMode="numeric"
-                placeholder="300 123 4567"
-                value={formatPhone(phone)}
-                onChange={(e) => setPhone(e.target.value)}
-                className="flex-1 px-3 py-3 text-base outline-none"
-                autoComplete="tel"
-              />
+            <div className="mt-1.5 rounded-lg focus-within:ring-2 focus-within:ring-gov-blue">
+              <div className="flex rounded-lg border border-gov-border bg-white overflow-hidden">
+                <span className="px-3 py-3 bg-gray-50 text-gov-gray text-sm border-r border-gov-border">
+                  +57
+                </span>
+                <input
+                  type="tel"
+                  inputMode="numeric"
+                  placeholder="300 123 4567"
+                  value={formatPhone(phone)}
+                  onChange={(e) => setPhone(toCoMobile(e.target.value))}
+                  className="flex-1 px-3 py-3 text-base outline-none placeholder:text-gray-400"
+                  autoComplete="tel"
+                />
+              </div>
             </div>
           </label>
-          {error && <p className="text-sm text-gov-red">{error}</p>}
-          <PrimaryButton onClick={sendOtp}>Recibir código</PrimaryButton>
+          {error && (
+            <p className="text-sm text-gov-red" role="alert">
+              {error}
+            </p>
+          )}
+          <PrimaryButton type="submit">Recibir código</PrimaryButton>
           <p className="text-xs text-gov-gray text-center">
             Demo: cualquier celular 3XX… · OTP fijo <strong>123456</strong>
           </p>
-        </div>
+        </form>
       )}
 
       {step === 'otp' && (
-        <div className="space-y-4">
+        <form
+          className="space-y-4"
+          onSubmit={(e) => {
+            e.preventDefault();
+            verifyOtp();
+          }}
+        >
           <p className="text-sm text-gov-gray">
             Código enviado a +57 {formatPhone(phone)} (simulado).
           </p>
@@ -102,11 +128,16 @@ export function Entrar() {
               placeholder="123456"
               value={otp}
               onChange={(e) => setOtp(e.target.value.replace(/\D/g, '').slice(0, 6))}
-              className="mt-1.5 w-full rounded-lg border border-gov-border px-3 py-3 text-center text-2xl tracking-[0.4em] font-mono outline-none focus:ring-2 focus:ring-gov-blue"
+              className="mt-1.5 w-full rounded-lg border border-gov-border px-3 py-3 text-center text-2xl tracking-[0.2em] font-mono outline-none placeholder:text-gray-400 focus:ring-2 focus:ring-gov-blue"
+              autoFocus
             />
           </label>
-          {error && <p className="text-sm text-gov-red">{error}</p>}
-          <PrimaryButton onClick={verifyOtp} disabled={otp.length < 6}>
+          {error && (
+            <p className="text-sm text-gov-red" role="alert">
+              {error}
+            </p>
+          )}
+          <PrimaryButton type="submit" disabled={otp.length < 6}>
             Verificar
           </PrimaryButton>
           <button
@@ -119,11 +150,17 @@ export function Entrar() {
           >
             Cambiar número
           </button>
-        </div>
+        </form>
       )}
 
       {step === 'municipio' && (
-        <div className="space-y-4">
+        <form
+          className="space-y-4"
+          onSubmit={(e) => {
+            e.preventDefault();
+            continueNext();
+          }}
+        >
           <label className="block">
             <span className="text-sm font-medium text-gray-800">
               ¿Desde qué municipio participas?
@@ -141,11 +178,18 @@ export function Entrar() {
               ))}
             </select>
           </label>
-          {error && <p className="text-sm text-gov-red">{error}</p>}
-          <PrimaryButton onClick={continueNext} disabled={!municipioId}>
+          {error && (
+            <p className="text-sm text-gov-red" role="alert">
+              {error}
+            </p>
+          )}
+          <PrimaryButton
+            type="submit"
+            disabled={!MUNICIPIOS.some((m) => m.id === municipioId)}
+          >
             Continuar
           </PrimaryButton>
-        </div>
+        </form>
       )}
     </Layout>
   );
