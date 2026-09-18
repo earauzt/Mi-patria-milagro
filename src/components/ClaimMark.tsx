@@ -9,7 +9,7 @@ export function ClaimMark({ compact = false }: { compact?: boolean }) {
       role="note"
     >
       <span aria-hidden>⚑</span>
-      Dato de campaña — no auditado
+      Dato de programa — no auditado
     </p>
   );
 }

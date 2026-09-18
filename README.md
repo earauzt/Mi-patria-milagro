@@ -1,6 +1,6 @@
 # Firmes · Mi Patria Milagro
 
-Prototipo clickeable (MVP) de adopción ciudadana **Firmes** para el relato de campaña *Patria Milagro* (De la Espriella / Restrepo 2026–2030), más el episodio previo de priorización del PND.
+Prototipo clickeable (MVP) de adopción ciudadana **Firmes** para el programa de gobierno *Patria Milagro* (De la Espriella / Restrepo 2026–2030), más el episodio previo de priorización del PND.
 
 Mobile-first · Español Colombia · Estilo institucional GOV.CO-inspired · Sin backend.
 
@@ -40,7 +40,7 @@ Seis ejes del portal:
 5. Educación
 6. Estado transparente
 
-Toda cifra de campaña en la UI lleva la marca **«Dato de campaña — no auditado»**. Este prototipo no publica métricas de progreso gubernamental.
+Toda cifra de programa en la UI lleva la marca **«Dato de programa — no auditado»**. Este prototipo no publica métricas de progreso gubernamental.
 
 Ruta de clic en [DEMO.md](./DEMO.md).
 
