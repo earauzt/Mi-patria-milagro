@@ -15,7 +15,7 @@ export function SkillTree() {
   return (
     <FirmesLayout
       title="Ejes"
-      subtitle="Seis ejes del portal. Seguridad y Salud van más abiertos en la Temporada 1. El loop diario vive en Hoy."
+      subtitle="Seis ejes del portal. Seguridad y salud tienen más contenido en los primeros 90 días."
     >
       <div className="mb-4">
         <ClaimMark />
@@ -34,7 +34,7 @@ export function SkillTree() {
               <div className="px-3 py-3 flex items-start justify-between gap-2">
                 <div>
                   <p className="text-[11px] text-gov-gray">
-                    0{i + 1} · {level === 'abierto' ? 'Abierto T1' : 'Vista previa'}
+                    0{i + 1} · {level === 'abierto' ? '90 días' : 'Vista previa'}
                   </p>
                   <h3 className="font-bold text-gray-900">{eje.nombre}</h3>
                   <p className="text-xs text-gov-gray mt-1 leading-relaxed">

@@ -35,7 +35,7 @@ export function Mission() {
       {mission.type === 'quiz' && (
         <div className="mb-3">
           <GuideBubble mood="think">
-            Una pregunta a la vez. Al final recibes Firmes al instante.
+            Una pregunta a la vez. Al final sumas Firmes.
           </GuideBubble>
         </div>
       )}
@@ -127,7 +127,7 @@ function QuizPlay({
           style={{ width: `${((step + (showKey ? 1 : 0)) / list.length) * 100}%` }}
         />
       </div>
-      <fieldset className="rounded-2xl border border-gov-border bg-white p-3">
+      <fieldset className="rounded-md border border-gov-border bg-white p-3">
         <legend className="text-sm font-semibold text-gray-900 px-1">
           {q.prompt}
         </legend>
@@ -146,7 +146,7 @@ function QuizPlay({
             return (
               <label
                 key={o.id}
-                className={`flex items-start gap-2 rounded-xl border px-3 py-3 text-sm ${tone}`}
+                className={`flex items-start gap-2 rounded-md border px-3 py-3 text-sm ${tone}`}
               >
                 <input
                   type="radio"
@@ -191,7 +191,7 @@ function QuizPlay({
         >
           {last
             ? disabled
-              ? 'Volver a la celebración'
+              ? 'Volver al registro'
               : 'Recibir Firmes'
             : 'Siguiente'}
         </PrimaryButton>
@@ -329,7 +329,7 @@ function ReportPlay({
         />
       )}
       <div className="rounded-lg border border-gov-border bg-white p-3">
-        <p className="text-sm font-medium text-gray-800">Ubicación demo</p>
+        <p className="text-sm font-medium text-gray-800">Ubicación de prueba</p>
         <p className="text-xs text-gov-gray mt-1">
           No usamos GPS real. Puedes pegar coordenadas ilustrativas de tu
           municipio.
@@ -345,7 +345,7 @@ function ReportPlay({
             onClick={() => setGeo(demo)}
             className="mt-2 text-sm font-semibold text-gov-blue"
           >
-            Usar ubicación demo de {demo.label}
+            Usar ubicación de prueba de {demo.label}
           </button>
         )}
       </div>
@@ -360,7 +360,7 @@ function ReportPlay({
           })
         }
       >
-        {disabled ? 'Reporte ya enviado' : 'Enviar reporte demo'}
+        {disabled ? 'Reporte ya enviado' : 'Enviar reporte de prueba'}
       </PrimaryButton>
     </div>
   );

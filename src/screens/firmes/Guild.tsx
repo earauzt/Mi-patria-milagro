@@ -2,7 +2,7 @@ import { ClaimMark } from '../../components/ClaimMark';
 import { FirmesLayout } from '../../components/FirmesLayout';
 import { getMunicipio } from '../../data/catalog';
 import { guildForMunicipio } from '../../data/firmes';
-import { totalFirmes } from '../../domain/firmes';
+import { diasLabel, totalFirmes } from '../../domain/firmes';
 import { useFirmes } from '../../hooks/useFirmes';
 
 export function Guild() {
@@ -16,20 +16,20 @@ export function Guild() {
 
   return (
     <FirmesLayout
-      title="Gremio local"
+      title="Equipo del municipio"
       subtitle={
         muni
-          ? `${muni.nombre} · ${muni.departamento}. Tablero V1, no el loop de Hoy.`
-          : 'Elige municipio en el onboarding para anclar el gremio.'
+          ? `${muni.nombre}, ${muni.departamento}. Lista de referencia.`
+          : 'Elige municipio al entrar para ver el equipo local.'
       }
     >
-      <div className="rounded-xl border border-amber-200 bg-amber-50 p-3 mb-4">
+      <div className="rounded-md border border-amber-200 bg-amber-50 p-3 mb-4">
         <p className="text-sm text-amber-950 leading-relaxed">
-          El gremio por municipio es V1. No interrumpe tu racha ni la misión del
-          día. No hay canje ni gift cards.
+          Este equipo es una lista de demostración. No corta tu racha ni la
+          misión del día. No hay canje.
         </p>
       </div>
-      <div className="rounded-xl border border-gov-border bg-white p-3 mb-4 flex justify-between">
+      <div className="rounded-md border border-gov-border bg-white p-3 mb-4 flex justify-between">
         <div>
           <p className="text-[10px] uppercase text-gov-gray">Tu puesto</p>
           <p className="text-2xl font-black text-gov-blue tabular-nums">
@@ -37,9 +37,9 @@ export function Guild() {
           </p>
         </div>
         <div className="text-right">
-          <p className="text-[10px] uppercase text-gov-gray">Racha del gremio</p>
+          <p className="text-[10px] uppercase text-gov-gray">Racha del equipo</p>
           <p className="text-sm font-semibold text-gray-800">
-            Vecinos demo + tú
+            Vecinos de prueba y tú
           </p>
         </div>
       </div>
@@ -47,11 +47,11 @@ export function Guild() {
       <div className="mb-3">
         <ClaimMark compact />
         <p className="text-[11px] text-gov-gray mt-1">
-          Nadie en este tablero representa un funcionario ni un avance oficial.
+          Nadie en esta lista representa a un funcionario ni un avance oficial.
         </p>
       </div>
 
-      <ol className="rounded-xl border border-gov-border bg-white divide-y divide-gov-border overflow-hidden">
+      <ol className="rounded-md border border-gov-border bg-white divide-y divide-gov-border overflow-hidden">
         {board.map((row, i) => (
           <li
             key={row.id}
@@ -66,7 +66,7 @@ export function Guild() {
               <div>
                 <p className="text-sm font-semibold text-gray-900">{row.name}</p>
                 <p className="text-[11px] text-gov-gray">
-                  Racha {row.streak} días
+                  Racha {diasLabel(row.streak)}
                 </p>
               </div>
             </div>

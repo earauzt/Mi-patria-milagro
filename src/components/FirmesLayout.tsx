@@ -18,7 +18,7 @@ export function FirmesLayout({
   subtitle,
   showNav = true,
   backTo,
-  eyebrow = 'Temporada 1 · 90 días',
+  eyebrow = 'Primeros 90 días',
   hideHeading = false,
 }: FirmesLayoutProps) {
   const navigate = useNavigate();
@@ -97,7 +97,7 @@ export function FirmesLayout({
                   }`;
                 }}
               >
-                <span aria-hidden className="text-base leading-none">
+                <span aria-hidden className="leading-none">
                   {navIcon(item.id)}
                 </span>
                 {item.label}
@@ -114,12 +114,41 @@ export function FirmesLayout({
   );
 }
 
-function navIcon(id: FirmesScreenId): string {
-  if (id === 'home') return '⌂';
-  if (id === 'ejes') return '⧉';
-  if (id === 'gremio') return '◈';
-  if (id === 'perfil') return '◉';
-  return '·';
+function navIcon(id: FirmesScreenId) {
+  const common = {
+    width: 18,
+    height: 18,
+    viewBox: '0 0 24 24',
+    fill: 'none',
+    stroke: 'currentColor',
+    strokeWidth: 1.8,
+    strokeLinecap: 'round' as const,
+    strokeLinejoin: 'round' as const,
+    'aria-hidden': true,
+  };
+  if (id === 'home') {
+    return (
+      <svg {...common}>
+        <path d="M4 11.5 12 5l8 6.5" />
+        <path d="M6.5 10.5V19h11v-8.5" />
+      </svg>
+    );
+  }
+  if (id === 'ejes') {
+    return (
+      <svg {...common}>
+        <path d="M5 7h14" />
+        <path d="M5 12h14" />
+        <path d="M5 17h10" />
+      </svg>
+    );
+  }
+  return (
+    <svg {...common}>
+      <circle cx="12" cy="8.5" r="3.2" />
+      <path d="M5.5 19c1.2-3.2 3.4-4.8 6.5-4.8S17.3 15.8 18.5 19" />
+    </svg>
+  );
 }
 
 export function PrimaryButton({
@@ -138,7 +167,7 @@ export function PrimaryButton({
       type={type}
       onClick={onClick}
       disabled={disabled}
-      className="w-full rounded-xl bg-gov-blue text-white font-bold py-3.5 px-4 text-base shadow-[0_4px_0_#072861] hover:bg-gov-blue-dark active:translate-y-0.5 active:shadow-none transition-all focus:outline-none focus:ring-2 focus:ring-gov-blue focus:ring-offset-2 disabled:shadow-none"
+      className="w-full rounded-md bg-gov-blue text-white font-semibold py-3 px-4 text-base hover:bg-gov-blue-dark focus:outline-none focus:ring-2 focus:ring-gov-blue focus:ring-offset-2"
     >
       {children}
     </button>
@@ -156,7 +185,7 @@ export function SecondaryButton({
     <button
       type="button"
       onClick={onClick}
-      className="w-full rounded-lg border-2 border-gov-blue text-gov-blue font-semibold py-3 px-4 text-base bg-white hover:bg-gov-blue-light transition-colors"
+      className="w-full rounded-md border border-gov-blue text-gov-blue font-semibold py-3 px-4 text-base bg-white hover:bg-gov-blue-light"
     >
       {children}
     </button>
@@ -188,10 +217,10 @@ export function FireStreak({ days }: { days: number }) {
   return (
     <div className="inline-flex items-center gap-2">
       <span
-        className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-orange-50 text-lg border border-orange-200"
+        className="inline-flex h-8 w-8 items-center justify-center rounded-md bg-orange-50 text-[11px] font-bold text-orange-800 border border-orange-200"
         aria-hidden
       >
-        🔥
+        {days === 1 ? 'día' : 'días'}
       </span>
       <span>
         <span className="font-black tabular-nums text-gray-900 text-xl leading-none">

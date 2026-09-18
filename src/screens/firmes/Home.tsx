@@ -9,6 +9,7 @@ import {
 import { GuideBubble } from '../../components/Mascot';
 import { DAILY_TODOS, getMission, MISSIONS } from '../../data/firmes';
 import {
+  diasLabel,
   hasCompleted,
   hasDailyTodo,
   pickMissionDelDia,
@@ -36,17 +37,17 @@ export function Home() {
 
   const greet =
     state.streakDays === 0
-      ? 'Buenas. Hoy empieza tu racha: una misión corta y listo.'
-      : `Racha de ${state.streakDays} día${state.streakDays === 1 ? '' : 's'}. Sigue con una sola misión.`;
+      ? 'Empieza por la misión del día.'
+      : `Llevas ${diasLabel(state.streakDays)} seguido${state.streakDays === 1 ? '' : 's'}. Sigue con la misión de hoy.`;
 
   return (
     <FirmesLayout title="Hoy" hideHeading>
       <h2 className="sr-only">Hoy</h2>
       <div className="grid grid-cols-2 gap-2 mb-3">
-        <div className="rounded-2xl border border-orange-200 bg-orange-50/80 p-3">
+        <div className="rounded-md border border-orange-200 bg-orange-50/80 p-3">
           <FireStreak days={state.streakDays} />
         </div>
-        <div className="rounded-2xl border border-yellow-300 bg-yellow-50 p-3">
+        <div className="rounded-md border border-yellow-300 bg-yellow-50 p-3">
           <Coin value={totalFirmes(state)} label="Firmes" />
         </div>
       </div>
@@ -54,13 +55,13 @@ export function Home() {
       <div className="mb-4">
         <GuideBubble mood={featuredDone && todosDone === DAILY_TODOS.length ? 'cheer' : 'idle'}>
           {featuredDone && todosDone === DAILY_TODOS.length
-            ? 'Cerraste el día. Vuelve mañana: la racha vive en Hoy, no en canjes.'
+            ? 'Listo por hoy. Vuelve mañana.'
             : greet}
         </GuideBubble>
       </div>
 
       {featured && (
-        <section className="rounded-2xl border-2 border-gov-blue bg-white p-4 mb-4 shadow-sm">
+        <section className="rounded-md border border-gov-blue bg-white p-4 mb-4">
           <p className="text-[11px] font-bold uppercase tracking-wide text-gov-blue">
             Misión del día
           </p>
@@ -76,7 +77,7 @@ export function Home() {
               ? `${featured.quiz?.length ?? 0} preguntas`
               : featured.type === 'checklist'
                 ? 'Lista de 90 días'
-                : 'Reporte demo'}
+                : 'Reporte de prueba'}
           </p>
           {featured.claims[0] && (
             <div className="mt-2">
@@ -85,14 +86,14 @@ export function Home() {
           )}
           <Link
             to={`/firmes/mision/${featured.id}`}
-            className="mt-3 flex w-full items-center justify-center rounded-xl bg-gov-blue text-white font-bold py-3.5 shadow-[0_4px_0_#072861] active:translate-y-0.5 active:shadow-none"
+            className="mt-3 flex w-full items-center justify-center rounded-md bg-gov-blue text-white font-semibold py-3.5"
           >
             {featuredDone ? 'Repasar misión' : 'Empezar misión'}
           </Link>
         </section>
       )}
 
-      <section className="rounded-2xl border border-gov-border bg-white p-4 mb-4">
+      <section className="rounded-md border border-gov-border bg-white p-4 mb-4">
         <div className="flex items-baseline justify-between gap-2 mb-3">
           <h3 className="text-sm font-bold text-gray-900">Pendientes de hoy</h3>
           <p className="text-xs tabular-nums text-gov-gray">
@@ -116,7 +117,7 @@ export function Home() {
                     const gained = completeDailyTodo(todo.id);
                     if (gained > 0) setJustAwarded(`+${gained} Firmes`);
                   }}
-                  className={`w-full text-left rounded-xl border px-3 py-3 ${
+                  className={`w-full text-left rounded-md border px-3 py-3 ${
                     done
                       ? 'border-green-200 bg-green-50'
                       : 'border-gov-border bg-white'
@@ -144,7 +145,7 @@ export function Home() {
                       <span className="block text-[11px] text-gov-gray mt-0.5 leading-relaxed">
                         {lockedMission
                           ? featuredDone
-                            ? 'Lista. Ya registraste la misión del día.'
+                            ? 'Ya registraste la misión del día.'
                             : todo.hint
                           : done
                             ? `Hecho · +${todo.firmesReward} Firmes aprendidos`
@@ -165,9 +166,9 @@ export function Home() {
       </section>
 
       <p className="text-xs text-gov-gray leading-relaxed mb-3">
-        Temporada 1 · 90 días · Seguridad + Salud. Los Firmes miden aprendizaje,
-        no resultados de gobierno. El gremio queda en Perfil (V1). No se compran
-        ni se canjean por dinero.
+        Primeros 90 días. Seguridad y salud. Los Firmes miden estudio, no
+        resultados de gobierno. El equipo del municipio está en Perfil. No se
+        compran ni se canjean.
       </p>
       <Link to="/firmes/transparencia" className="block text-sm text-gov-gray">
         Cómo se ganan Firmes

@@ -36,7 +36,7 @@ export interface DailyTodo {
 export interface CampaignClaim {
   id: string;
   text: string;
-  /** Always true in this prototype — campaign copy, not official execution. */
+  /** Always true in this prototype: program copy, not official execution. */
   unaudited: true;
 }
 
@@ -183,6 +183,10 @@ export function yesterdayKey(d = new Date()): string {
   const prev = new Date(d);
   prev.setDate(prev.getDate() - 1);
   return todayKey(prev);
+}
+
+export function diasLabel(n: number): string {
+  return n === 1 ? '1 día' : `${n} días`;
 }
 
 export function nextStreak(

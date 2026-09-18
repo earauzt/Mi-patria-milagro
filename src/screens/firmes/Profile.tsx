@@ -3,7 +3,7 @@ import { ClaimMark } from '../../components/ClaimMark';
 import { Coin, FirmesLayout, SecondaryButton } from '../../components/FirmesLayout';
 import { getMunicipio } from '../../data/catalog';
 import { BADGES, EXPLAINERS, getBadge } from '../../data/firmes';
-import { totalFirmes } from '../../domain/firmes';
+import { diasLabel, totalFirmes } from '../../domain/firmes';
 import { useFirmes } from '../../hooks/useFirmes';
 
 export function Profile() {
@@ -21,8 +21,8 @@ export function Profile() {
       title="Tu perfil"
       subtitle={
         muni
-          ? `${muni.nombre} · Temporada 1`
-          : 'Ciudadano Firmes · Temporada 1'
+          ? `${muni.nombre} · Primeros 90 días`
+          : 'Ciudadano Firmes · Primeros 90 días'
       }
     >
       <div className="rounded-xl border border-gov-border bg-white p-4 mb-4">
@@ -43,7 +43,7 @@ export function Profile() {
           </div>
           <div>
             <dt className="text-gov-gray text-xs">Racha</dt>
-            <dd className="font-bold tabular-nums">{state.streakDays} días</dd>
+            <dd className="font-bold tabular-nums">{diasLabel(state.streakDays)}</dd>
           </div>
           <div>
             <dt className="text-gov-gray text-xs">Misiones</dt>
@@ -62,7 +62,7 @@ export function Profile() {
               key={b.id}
               className="rounded-lg border border-gov-border bg-white px-3 py-2"
             >
-              <p className="text-sm font-semibold">🏅 {b.name}</p>
+              <p className="text-sm font-semibold">{b.name}</p>
               <p className="text-xs text-gov-gray">{b.description}</p>
             </li>
           ))}
@@ -80,12 +80,12 @@ export function Profile() {
 
       <section className="mb-4">
         <h3 className="text-sm font-bold text-gray-900 mb-2">
-          Certificado Temporada 1
+          Certificado de los 90 días
         </h3>
         {state.certificateUnlocked ? (
           <div className="rounded-xl border-2 border-gov-blue bg-white p-4 text-center">
             <p className="text-[11px] uppercase tracking-widest text-gov-gray">
-              Firmes · Season 1
+              Firmes · 90 días
             </p>
             <p className="text-lg font-black text-gov-blue mt-1">
               Certificado de aprendizaje
@@ -100,13 +100,13 @@ export function Profile() {
             </p>
             {getBadge('temporada-1') && (
               <p className="text-xs font-semibold text-gov-blue mt-2">
-                Insignia «Certificado Temporada 1»
+                Insignia «Certificado de los 90 días»
               </p>
             )}
           </div>
         ) : (
           <p className="text-sm text-gov-gray leading-relaxed">
-            Se desbloquea al completar 3 misiones, incluyendo al menos una de
+            Se obtiene al completar 3 misiones, incluyendo al menos una de
             Seguridad y una de Salud.
           </p>
         )}
@@ -115,7 +115,7 @@ export function Profile() {
       {explainers.length > 0 && (
         <section className="mb-4">
           <h3 className="text-sm font-bold text-gray-900 mb-2">
-            Explicadores abiertos
+            Textos de contexto
           </h3>
           <ul className="space-y-2">
             {explainers.map((e) => (
@@ -147,7 +147,7 @@ export function Profile() {
         to="/firmes/gremio"
         className="block text-sm text-gov-gray mb-4"
       >
-        Gremio del municipio (V1)
+        Equipo del municipio
       </Link>
 
       <SecondaryButton
