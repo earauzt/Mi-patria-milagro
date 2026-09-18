@@ -89,8 +89,7 @@ export function Reward() {
       <div className="mb-4">
         <ClaimMark />
         <p className="text-xs text-gov-gray mt-2 leading-relaxed">
-          No hay dinero, gift cards ni compra de apoyo. Los Firmes {reward.kind}{' '}
-          no son tesorería pública.
+          Los Firmes {reward.kind} registran estudio, no tesorería pública.
         </p>
       </div>
 

@@ -172,7 +172,7 @@ export function Onboarding() {
             </select>
           </label>
           <p className="text-xs text-gov-gray">
-            El municipio agrupa el equipo local. Se ve en Perfil.
+            Así se agrupa el equipo del municipio. Se ve en Perfil.
           </p>
           {error && <p className="text-sm text-gov-red">{error}</p>}
           <PrimaryButton onClick={saveMunicipio} disabled={!municipioId}>

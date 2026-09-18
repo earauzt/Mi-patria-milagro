@@ -22,11 +22,11 @@ Código: **`123456`**
 1. **Landing** — Un botón: *Entrar a Firmes*.
 2. **Onboarding** — Celular → OTP `123456` → municipio **Quibdó** → 1–2 ejes (Seguridad + Salud) → *Empezar*.
 3. **Hoy** — Arriba: racha + saldo Firmes. Una **misión del día**. Debajo: pendientes de hoy.
-4. **Quiz** — *Empezar misión*. Una pregunta a la vez → *Comprobar* → *Siguiente* / *Recibir Firmes*.
+4. **Quiz** — *Empezar misión*. Una pregunta a la vez → *Comprobar* → *Siguiente* / *Registrar Firmes*.
 5. **Registro** — +N Firmes. Un botón: *Seguir en Hoy*.
 6. **Pendientes** — En Hoy, marca las tareas cívicas (+5 Firmes aprendidos cada una).
 7. **Ejes / Perfil** — Más misiones y certificado (3 misiones, Seguridad + Salud). El equipo del municipio está en Perfil.
-8. **Transparencia** — *Cómo se ganan Firmes*: sin dinero ni gift cards.
+8. **Transparencia** — *Cómo se ganan Firmes*: un aviso corto de que no se canjean.
 
 ## Home Hoy (qué ves)
 
@@ -51,7 +51,7 @@ Landing → **Mi Patria Milagro / priorizar PND** → OTP `123456` → 100 ficha
 | `/firmes/mision/:id` | Quiz / lista / reporte |
 | `/firmes/recompensa` | Registro de Firmes |
 | `/firmes/ejes` | Seis ejes |
-| `/firmes/gremio` | Equipo del municipio (desde Perfil) |
+| `/firmes/equipo` | Equipo del municipio (desde Perfil) |
 | `/firmes/perfil` | Firmes, insignias, certificado |
 | `/firmes/transparencia` | Reglas |
 

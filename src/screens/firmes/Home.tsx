@@ -167,8 +167,7 @@ export function Home() {
 
       <p className="text-xs text-gov-gray leading-relaxed mb-3">
         Primeros 90 días. Seguridad y salud. Los Firmes miden estudio, no
-        resultados de gobierno. El equipo del municipio está en Perfil. No se
-        compran ni se canjean.
+        resultados de gobierno. El equipo del municipio está en Perfil.
       </p>
       <Link to="/firmes/transparencia" className="block text-sm text-gov-gray">
         Cómo se ganan Firmes

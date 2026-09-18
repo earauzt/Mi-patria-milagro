@@ -144,7 +144,7 @@ export function Profile() {
         Cómo se ganan Firmes
       </Link>
       <Link
-        to="/firmes/gremio"
+        to="/firmes/equipo"
         className="block text-sm text-gov-gray mb-4"
       >
         Equipo del municipio

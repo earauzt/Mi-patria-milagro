@@ -73,7 +73,7 @@ export function FirmesLayout({
       {showNav ? (
         <div className="absolute bottom-0 inset-x-0 bg-white border-t border-gov-border">
           <p className="text-[10px] text-center text-gov-gray pt-1.5 px-3">
-            Los Firmes no se compran · Prototipo ciudadano
+            Prototipo ciudadano
           </p>
           <nav
             className="grid grid-cols-3 text-[11px]"
@@ -107,7 +107,7 @@ export function FirmesLayout({
         </div>
       ) : (
         <footer className="shrink-0 border-t border-gov-border bg-white px-4 py-2 text-center text-[10px] text-gov-gray">
-          Los Firmes no se compran · Prototipo ciudadano · Sin vínculo oficial DNP
+          Prototipo ciudadano · Sin vínculo oficial DNP
         </footer>
       )}
     </div>

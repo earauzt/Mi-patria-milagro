@@ -30,8 +30,7 @@ export function Landing() {
             Seguridad y salud
           </h2>
           <p className="text-sm text-gov-gray mt-1.5 leading-relaxed">
-            Una misión al día, una lista corta y un certificado de estudio. Los
-            Firmes no se compran ni se canjean.
+            Una misión al día, una lista corta y un certificado de estudio.
           </p>
           <Link
             to="/firmes"
@@ -68,10 +67,6 @@ export function Landing() {
           <div className="mt-2">
             <ClaimMark />
           </div>
-          <p className="text-xs text-amber-900 mt-3 leading-relaxed">
-            Los Firmes no se compran. No hay dinero ni «pagar para apoyar». El
-            certificado acredita que estudiaste propuestas.
-          </p>
           <Link
             to="/firmes/transparencia"
             className="inline-block mt-2 text-sm font-semibold text-gov-blue underline"

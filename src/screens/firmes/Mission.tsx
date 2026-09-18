@@ -35,7 +35,7 @@ export function Mission() {
       {mission.type === 'quiz' && (
         <div className="mb-3">
           <GuideBubble mood="think">
-            Una pregunta a la vez. Al final sumas Firmes.
+            Una pregunta a la vez. Al final se registran Firmes de estudio.
           </GuideBubble>
         </div>
       )}
@@ -192,7 +192,7 @@ function QuizPlay({
           {last
             ? disabled
               ? 'Volver al registro'
-              : 'Recibir Firmes'
+              : 'Registrar Firmes'
             : 'Siguiente'}
         </PrimaryButton>
       )}
