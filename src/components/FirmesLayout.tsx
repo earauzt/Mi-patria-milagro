@@ -70,7 +70,7 @@ export function FirmesLayout({
             Los Firmes no se compran · Prototipo ciudadano
           </p>
           <nav
-            className="grid grid-cols-4 text-[11px]"
+            className="grid grid-cols-3 text-[11px]"
             aria-label="Navegación Firmes"
           >
             {FIRMES_NAV.map((item) => (
@@ -132,7 +132,7 @@ export function PrimaryButton({
       type={type}
       onClick={onClick}
       disabled={disabled}
-      className="w-full rounded-lg bg-gov-blue text-white font-semibold py-3.5 px-4 text-base shadow-sm hover:bg-gov-blue-dark transition-colors focus:outline-none focus:ring-2 focus:ring-gov-blue focus:ring-offset-2"
+      className="w-full rounded-xl bg-gov-blue text-white font-bold py-3.5 px-4 text-base shadow-[0_4px_0_#072861] hover:bg-gov-blue-dark active:translate-y-0.5 active:shadow-none transition-all focus:outline-none focus:ring-2 focus:ring-gov-blue focus:ring-offset-2 disabled:shadow-none"
     >
       {children}
     </button>
@@ -173,6 +173,27 @@ export function Coin({ value, label }: { value: number; label?: string }) {
             {label}
           </span>
         )}
+      </span>
+    </div>
+  );
+}
+
+export function FireStreak({ days }: { days: number }) {
+  return (
+    <div className="inline-flex items-center gap-2">
+      <span
+        className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-orange-50 text-lg border border-orange-200"
+        aria-hidden
+      >
+        🔥
+      </span>
+      <span>
+        <span className="font-black tabular-nums text-gray-900 text-xl leading-none">
+          {days}
+        </span>
+        <span className="block text-[10px] uppercase tracking-wide text-gov-gray">
+          Racha
+        </span>
       </span>
     </div>
   );

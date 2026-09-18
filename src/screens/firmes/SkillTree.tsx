@@ -14,8 +14,8 @@ export function SkillTree() {
 
   return (
     <FirmesLayout
-      title="Árbol de ejes"
-      subtitle="Seis ejes del portal. Seguridad y Salud van más abiertos en la Temporada 1."
+      title="Ejes"
+      subtitle="Seis ejes del portal. Seguridad y Salud van más abiertos en la Temporada 1. El loop diario vive en Hoy."
     >
       <div className="mb-4">
         <ClaimMark />

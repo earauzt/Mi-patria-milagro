@@ -29,7 +29,9 @@ Código mock: **`123456`**. No hay SMS real.
 
 ## Firmes · Temporada 1
 
-Primeros 90 días, foco **Seguridad** y **Salud**. Seis ejes del portal:
+Primeros 90 días, foco **Seguridad** y **Salud**. Home post-login = **Hoy** (racha 🔥, una misión del día, pendientes tipo checklist). Guía **Pilo**. Sin canje monetario ni gift cards.
+
+Seis ejes del portal:
 
 1. Seguridad
 2. Salud

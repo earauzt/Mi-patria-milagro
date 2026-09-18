@@ -6,10 +6,12 @@ import {
   useState,
   type ReactNode,
 } from 'react';
-import { MISSIONS } from '../data/firmes';
+import { getDailyTodo, MISSIONS } from '../data/firmes';
 import {
+  applyDailyTodo,
   applyMissionCompletion,
   createInitialFirmes,
+  rollDailyTodos,
   type CompletionInput,
   type FirmesState,
 } from '../domain/firmes';
@@ -19,7 +21,9 @@ const STORAGE_KEY = 'firmes-season1-v1';
 function load(): FirmesState {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
-    if (raw) return { ...createInitialFirmes(), ...JSON.parse(raw) };
+    if (raw) {
+      return rollDailyTodos({ ...createInitialFirmes(), ...JSON.parse(raw) });
+    }
   } catch {
     /* ignore */
   }
@@ -38,6 +42,7 @@ interface FirmesContextValue {
   state: FirmesState;
   update: (patch: Partial<FirmesState>) => void;
   completeMission: (missionId: string, input: CompletionInput) => boolean;
+  completeDailyTodo: (todoId: string) => number;
   reset: () => void;
 }
 
@@ -71,6 +76,19 @@ export function FirmesProvider({ children }: { children: ReactNode }) {
     [],
   );
 
+  const completeDailyTodo = useCallback((todoId: string) => {
+    const todo = getDailyTodo(todoId);
+    if (!todo || todo.kind === 'mission') return 0;
+    let awarded = 0;
+    setState((prev) => {
+      const next = applyDailyTodo(prev, todo);
+      awarded = next.firmesAprendidos - prev.firmesAprendidos;
+      save(next);
+      return next;
+    });
+    return awarded;
+  }, []);
+
   const reset = useCallback(() => {
     const fresh = createInitialFirmes();
     save(fresh);
@@ -78,8 +96,8 @@ export function FirmesProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const value = useMemo(
-    () => ({ state, update, completeMission, reset }),
-    [state, update, completeMission, reset],
+    () => ({ state, update, completeMission, completeDailyTodo, reset }),
+    [state, update, completeMission, completeDailyTodo, reset],
   );
 
   return (

@@ -139,9 +139,15 @@ export function Profile() {
 
       <Link
         to="/firmes/transparencia"
-        className="block text-sm font-semibold text-gov-blue mb-4"
+        className="block text-sm font-semibold text-gov-blue mb-2"
       >
         Cómo se ganan Firmes
+      </Link>
+      <Link
+        to="/firmes/gremio"
+        className="block text-sm text-gov-gray mb-4"
+      >
+        Gremio del municipio (V1)
       </Link>
 
       <SecondaryButton

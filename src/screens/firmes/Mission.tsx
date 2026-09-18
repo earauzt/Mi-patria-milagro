@@ -2,6 +2,7 @@ import { useMemo, useState } from 'react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
 import { ClaimCard, ClaimMark } from '../../components/ClaimMark';
 import { FirmesLayout, PrimaryButton } from '../../components/FirmesLayout';
+import { GuideBubble } from '../../components/Mascot';
 import { GEO_DEMO, getEje, getMission } from '../../data/firmes';
 import { hasCompleted, type QuizQuestion } from '../../domain/firmes';
 import { useFirmes } from '../../hooks/useFirmes';
@@ -31,6 +32,13 @@ export function Mission() {
       subtitle={`${eje.nombre} · ${labelType(mission.type)} · ${mission.firmesReward} Firmes ${mission.firmesKind}`}
       backTo="/firmes"
     >
+      {mission.type === 'quiz' && (
+        <div className="mb-3">
+          <GuideBubble mood="think">
+            Una pregunta a la vez. Al final recibes Firmes al instante.
+          </GuideBubble>
+        </div>
+      )}
       <p className="text-sm text-gray-800 leading-relaxed mb-3">
         {mission.summary}
       </p>
@@ -98,73 +106,94 @@ function QuizPlay({
   onFinish: (answers: Record<string, string>) => void;
 }) {
   const list = questions ?? [];
+  const [step, setStep] = useState(0);
   const [answers, setAnswers] = useState<Record<string, string>>({});
-  const [submitted, setSubmitted] = useState(false);
-  const allIn = list.every((q) => answers[q.id]);
+  const [locked, setLocked] = useState(false);
+  const q = list[step];
+  if (!q) return null;
+
+  const selected = answers[q.id];
+  const last = step === list.length - 1;
+  const showKey = locked || disabled;
 
   return (
     <div className="space-y-4">
-      {list.map((q, idx) => (
-        <fieldset
-          key={q.id}
-          className="rounded-xl border border-gov-border bg-white p-3"
-        >
-          <legend className="text-sm font-semibold text-gray-900 px-1">
-            {idx + 1}. {q.prompt}
-          </legend>
-          <div className="space-y-2 mt-2">
-            {q.options.map((o) => {
-              const selected = answers[q.id] === o.id;
-              const showKey = submitted || disabled;
-              const tone = showKey
-                ? o.correct
-                  ? 'border-green-600 bg-green-50'
-                  : selected
-                    ? 'border-gov-red bg-red-50'
-                    : 'border-gov-border bg-white'
-                : selected
-                  ? 'border-gov-blue bg-gov-blue-light'
-                  : 'border-gov-border bg-white';
-              return (
-                <label
-                  key={o.id}
-                  className={`flex items-start gap-2 rounded-lg border px-3 py-2.5 text-sm ${tone}`}
-                >
-                  <input
-                    type="radio"
-                    name={q.id}
-                    checked={selected}
-                    disabled={disabled || submitted}
-                    onChange={() =>
-                      setAnswers((prev) => ({ ...prev, [q.id]: o.id }))
-                    }
-                    className="mt-0.5"
-                  />
-                  <span>{o.text}</span>
-                </label>
-              );
-            })}
-          </div>
-          {(submitted || disabled) && (
-            <p className="text-xs text-gov-gray mt-2 leading-relaxed">
-              {q.explainer}
-            </p>
-          )}
-        </fieldset>
-      ))}
-      {!disabled && !submitted && (
-        <PrimaryButton
-          disabled={!allIn}
-          onClick={() => {
-            setSubmitted(true);
-          }}
-        >
-          Revisar respuestas
+      <p className="text-xs font-semibold text-gov-gray">
+        Pregunta {step + 1} de {list.length}
+      </p>
+      <div className="h-1.5 rounded-full bg-gov-border overflow-hidden">
+        <div
+          className="h-full bg-gov-blue transition-all"
+          style={{ width: `${((step + (showKey ? 1 : 0)) / list.length) * 100}%` }}
+        />
+      </div>
+      <fieldset className="rounded-2xl border border-gov-border bg-white p-3">
+        <legend className="text-sm font-semibold text-gray-900 px-1">
+          {q.prompt}
+        </legend>
+        <div className="space-y-2 mt-2">
+          {q.options.map((o) => {
+            const isSel = selected === o.id;
+            const tone = showKey
+              ? o.correct
+                ? 'border-green-600 bg-green-50'
+                : isSel
+                  ? 'border-gov-red bg-red-50'
+                  : 'border-gov-border bg-white'
+              : isSel
+                ? 'border-gov-blue bg-gov-blue-light'
+                : 'border-gov-border bg-white';
+            return (
+              <label
+                key={o.id}
+                className={`flex items-start gap-2 rounded-xl border px-3 py-3 text-sm ${tone}`}
+              >
+                <input
+                  type="radio"
+                  name={q.id}
+                  checked={isSel}
+                  disabled={disabled || locked}
+                  onChange={() =>
+                    setAnswers((prev) => ({ ...prev, [q.id]: o.id }))
+                  }
+                  className="mt-0.5"
+                />
+                <span>{o.text}</span>
+              </label>
+            );
+          })}
+        </div>
+        {showKey && (
+          <p className="text-xs text-gov-gray mt-3 leading-relaxed">
+            {q.explainer}
+          </p>
+        )}
+      </fieldset>
+      {!disabled && !locked && (
+        <PrimaryButton disabled={!selected} onClick={() => setLocked(true)}>
+          Comprobar
         </PrimaryButton>
       )}
-      {(submitted || disabled) && (
-        <PrimaryButton onClick={() => onFinish(answers)}>
-          {disabled ? 'Ir a recompensa' : 'Registrar Firmes aprendidos'}
+      {(locked || disabled) && (
+        <PrimaryButton
+          onClick={() => {
+            if (disabled) {
+              if (last) onFinish(answers);
+              else setStep((s) => s + 1);
+              return;
+            }
+            if (last) onFinish(answers);
+            else {
+              setStep((s) => s + 1);
+              setLocked(false);
+            }
+          }}
+        >
+          {last
+            ? disabled
+              ? 'Volver a la celebración'
+              : 'Recibir Firmes'
+            : 'Siguiente'}
         </PrimaryButton>
       )}
     </div>

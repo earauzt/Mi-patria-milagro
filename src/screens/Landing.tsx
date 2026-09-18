@@ -1,5 +1,6 @@
 import { Link } from 'react-router-dom';
 import { ClaimMark } from '../components/ClaimMark';
+import { GuideBubble } from '../components/Mascot';
 
 export function Landing() {
   return (
@@ -22,28 +23,31 @@ export function Landing() {
       </header>
 
       <main className="flex-1 overflow-y-auto px-4 py-5 space-y-4">
-        <div className="rounded-xl border-2 border-gov-blue bg-white p-4 shadow-sm">
+        <GuideBubble>
+          Hoy es simple: racha, una misión del día y tus pendientes. Sin canje
+          de dinero.
+        </GuideBubble>
+        <div className="rounded-2xl border-2 border-gov-blue bg-white p-4 shadow-sm">
           <p className="text-[11px] font-bold uppercase tracking-wide text-gov-blue">
-            Recomendado
+            Temporada 1
           </p>
           <h2 className="text-lg font-bold text-gray-900 mt-1">
-            Firmes · Temporada 1
+            Firmes · 90 días
           </h2>
           <p className="text-sm text-gov-gray mt-1.5 leading-relaxed">
-            Primeros 90 días: foco en <strong>Seguridad</strong> y{' '}
-            <strong>Salud</strong>. Misiones, gremio por municipio y certificado
-            simbólico.
+            Foco en <strong>Seguridad</strong> y <strong>Salud</strong>. Quiz
+            corto, Firmes al instante y certificado simbólico.
           </p>
           <ul className="mt-3 text-sm text-gray-800 space-y-1">
-            <li>· Quiz de propuestas y listas de 90 días</li>
-            <li>· Reporte ciudadano (foto + geo de demostración)</li>
-            <li>· Firmes aprendidos frente a verificados</li>
+            <li>· Misión del día + pendientes (estilo Hoy)</li>
+            <li>· Quiz de propuestas con marca «no auditado»</li>
+            <li>· Sin gift cards ni compra de apoyo</li>
           </ul>
           <Link
             to="/firmes"
-            className="mt-4 flex w-full items-center justify-center rounded-lg bg-gov-blue text-white font-semibold py-3.5"
+            className="mt-4 flex w-full items-center justify-center rounded-xl bg-gov-blue text-white font-bold py-3.5 shadow-[0_4px_0_#072861]"
           >
-            Entrar a Firmes Season 1
+            Entrar a Firmes
           </Link>
         </div>
 

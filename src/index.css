@@ -60,13 +60,106 @@ input[type="range"] {
   animation: firmes-pop 0.45s ease-out;
 }
 
+.firmes-pop {
+  animation: firmes-pop 0.55s cubic-bezier(0.22, 1.4, 0.36, 1);
+}
+
+.todo-pop {
+  animation: firmes-pop 0.4s ease-out;
+}
+
+.mascot-bob {
+  animation: mascot-bob 2.8s ease-in-out infinite;
+}
+
 @keyframes firmes-pop {
   0% {
-    transform: scale(0.92);
-    opacity: 0.4;
+    transform: scale(0.72);
+    opacity: 0.2;
+  }
+  70% {
+    transform: scale(1.06);
+    opacity: 1;
   }
   100% {
     transform: scale(1);
     opacity: 1;
+  }
+}
+
+@keyframes mascot-bob {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+.confetti {
+  pointer-events: none;
+  position: absolute;
+  inset: 0;
+}
+
+.confetti span {
+  position: absolute;
+  top: -8px;
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+  animation: confetti-fall 1.1s ease-out forwards;
+}
+
+.confetti span:nth-child(1) {
+  left: 12%;
+  background: #0b3b8c;
+  animation-delay: 0.02s;
+}
+.confetti span:nth-child(2) {
+  left: 28%;
+  background: #fcd116;
+  animation-delay: 0.08s;
+}
+.confetti span:nth-child(3) {
+  left: 46%;
+  background: #ce1126;
+  animation-delay: 0.04s;
+}
+.confetti span:nth-child(4) {
+  left: 62%;
+  background: #0b3b8c;
+  animation-delay: 0.12s;
+}
+.confetti span:nth-child(5) {
+  left: 76%;
+  background: #fcd116;
+  animation-delay: 0.06s;
+}
+.confetti span:nth-child(6) {
+  left: 88%;
+  background: #16a34a;
+  animation-delay: 0.14s;
+}
+
+@keyframes confetti-fall {
+  0% {
+    transform: translateY(0) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(92px) rotate(180deg);
+    opacity: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .reward-burst,
+  .firmes-pop,
+  .todo-pop,
+  .mascot-bob,
+  .confetti span {
+    animation: none;
   }
 }
