@@ -18,7 +18,7 @@ export type FirmesScreenId =
   | 'mission'
   | 'reward'
   | 'ejes'
-  | 'gremio'
+  | 'equipo'
   | 'perfil'
   | 'transparencia';
 
@@ -344,7 +344,7 @@ export function toggleEje(
   return [...current, id];
 }
 
-/** Bottom nav keeps the daily loop short. Guild is V1 and lives in Perfil. */
+/** Bottom nav keeps the daily loop short. Equipo del municipio lives in Perfil. */
 export const FIRMES_NAV: { id: FirmesScreenId; to: string; label: string }[] = [
   { id: 'home', to: '/firmes', label: 'Hoy' },
   { id: 'ejes', to: '/firmes/ejes', label: 'Ejes' },

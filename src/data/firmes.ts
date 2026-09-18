@@ -77,7 +77,7 @@ export const DAILY_TODOS: DailyTodo[] = [
     text: 'Terminar la misión del día',
     kind: 'mission',
     firmesReward: 0,
-    hint: 'El quiz de hoy suma Firmes al terminar.',
+    hint: 'Al terminar el quiz de hoy se registran Firmes de estudio.',
   },
   {
     id: 'todo-denuncia',
@@ -271,7 +271,7 @@ export const MISSIONS: Mission[] = [
           { id: 'c', text: 'Un cargo público honorífico', correct: false },
         ],
         explainer:
-          'Los Firmes no se compran ni se venden. El quiz suma Firmes aprendidos, no verificados.',
+          'El quiz registra Firmes aprendidos, no verificados. No es un pago.',
       },
     ],
   },
@@ -441,7 +441,7 @@ export const MISSIONS: Mission[] = [
           { id: 'c', text: 'Un título que emite Firmes', correct: false },
         ],
         explainer:
-          'Firmes puede desbloquear un explicador; no matricula ni otorga títulos.',
+          'Firmes puede abrir un texto de contexto; no matricula ni otorga títulos.',
       },
       {
         id: 'q2',

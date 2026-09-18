@@ -4,7 +4,7 @@ Prototipo clickeable de **Firmes** para el programa de gobierno *Patria Milagro*
 
 Mobile-first · Español Colombia · Estilo institucional GOV.CO · Sin backend.
 
-**Los Firmes no se compran.** Son puntos de estudio. No hay dinero ni «pagar para apoyar».
+Los Firmes son puntos de estudio. No se canjean por dinero ni por recompensas comerciales.
 
 Demo pública: [https://earauzt.github.io/Mi-patria-milagro/](https://earauzt.github.io/Mi-patria-milagro/)
 
@@ -29,7 +29,7 @@ Código: **`123456`**. No hay SMS real.
 
 ## Firmes · Primeros 90 días
 
-Foco **Seguridad** y **Salud**. Después de entrar, **Hoy** muestra racha, saldo de Firmes, una misión del día y pendientes. Guía corta (sin personaje de juego). Sin canje ni gift cards.
+Foco **Seguridad** y **Salud**. Después de entrar, **Hoy** muestra racha, saldo de Firmes, una misión del día y pendientes. Guía corta (sin personaje de juego).
 
 Seis ejes del portal:
 

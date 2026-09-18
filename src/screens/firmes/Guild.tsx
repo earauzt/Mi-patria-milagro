@@ -26,7 +26,7 @@ export function Guild() {
       <div className="rounded-md border border-amber-200 bg-amber-50 p-3 mb-4">
         <p className="text-sm text-amber-950 leading-relaxed">
           Este equipo es una lista de demostración. No corta tu racha ni la
-          misión del día. No hay canje.
+          misión del día.
         </p>
       </div>
       <div className="rounded-md border border-gov-border bg-white p-3 mb-4 flex justify-between">

@@ -11,9 +11,8 @@ export function Transparencia() {
       <section className="rounded-md border border-gov-border bg-white p-4 mb-3">
         <h3 className="font-bold text-gray-900">Qué es un Firme</h3>
         <p className="text-sm text-gov-gray mt-1.5 leading-relaxed">
-          Un Firme es un punto de estudio. No es dinero, no es un subsidio y no
-          se puede comprar. Nadie «paga para apoyar» al programa Patria Milagro
-          desde esta app.
+          Un Firme es un punto de estudio. No se canjea por dinero ni por
+          recompensas comerciales.
         </p>
       </section>
 
@@ -49,9 +48,7 @@ export function Transparencia() {
         <h3 className="font-bold text-gray-900">Qué sí hay</h3>
         <p className="text-sm text-gov-gray mt-1.5 leading-relaxed">
           Insignias de estudio, textos de contexto, un certificado de los 90
-          días y un puesto en el equipo del municipio (demostración). No hay
-          efectivo, gift cards, giros, rifas pagadas ni «compra de apoyo». Los
-          Firmes no se canjean por dinero.
+          días y un puesto en el equipo del municipio (demostración).
         </p>
       </section>
 

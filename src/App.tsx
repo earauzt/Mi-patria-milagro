@@ -70,13 +70,14 @@ function FirmesRoutes() {
         }
       />
       <Route
-        path="gremio"
+        path="equipo"
         element={
           <FirmesGate>
             <Guild />
           </FirmesGate>
         }
       />
+      <Route path="gremio" element={<Navigate to="/firmes/equipo" replace />} />
       <Route
         path="perfil"
         element={
