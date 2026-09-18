@@ -1,8 +1,12 @@
-# Mi Patria Milagro
+# Firmes · Mi Patria Milagro
 
-Prototipo clickeable (throwaway) de participación ciudadana para el PND 2026–2030 (Colombia).
+Prototipo clickeable (MVP) de adopción ciudadana **Firmes** para el relato de campaña *Patria Milagro* (De la Espriella / Restrepo 2026–2030), más el episodio previo de priorización del PND.
 
 Mobile-first · Español Colombia · Estilo institucional GOV.CO-inspired · Sin backend.
+
+**Los Firmes no se compran.** Son puntos educativos. No hay dinero ni «pagar para apoyar».
+
+Demo pública: [https://earauzt.github.io/Mi-patria-milagro/](https://earauzt.github.io/Mi-patria-milagro/)
 
 ## Cómo correr
 
@@ -10,7 +14,7 @@ Mobile-first · Español Colombia · Estilo institucional GOV.CO-inspired · Sin
 npm install && npm run dev
 ```
 
-Abre la URL que imprime Vite (por defecto `http://localhost:5173`). Preferible vista móvil (~390px).
+Vite sirve en `http://localhost:5173/Mi-patria-milagro/`. Preferible vista móvil (~390px).
 
 Build de producción:
 
@@ -23,18 +27,27 @@ npm run preview
 
 Código mock: **`123456`**. No hay SMS real.
 
-## Módulos
+## Firmes · Temporada 1
 
-1. **Flujo ciudadano** — Entrar → 100 fichas → Priorizar → Mi municipio → La vara
-2. **Cierre** — Tu Colombia (comparación + insignia + compartir UI)
-3. **Tablero** — Colombia en vivo (totales, regiones, heatmap)
+Primeros 90 días, foco **Seguridad** y **Salud**. Seis ejes del portal:
 
-## Demo rápida
+1. Seguridad
+2. Salud
+3. Economía
+4. Campo
+5. Educación
+6. Estado transparente
 
-La ruta de clic paso a paso (menos de 3 minutos) está en [DEMO.md](./DEMO.md).
+Toda cifra de campaña en la UI lleva la marca **«Dato de campaña — no auditado»**. Este prototipo no publica métricas de progreso gubernamental.
+
+Ruta de clic en [DEMO.md](./DEMO.md).
+
+## Episodio PND
+
+Sigue disponible desde el portal: *Mi Patria Milagro / priorizar PND* (`/pnd`).
 
 ## Notas
 
-- Datos de municipios e indicadores son **demostrativos** (inspirados en TerriData).
-- No usa logos oficiales del DNP; wordmark tipográfico «Mi Patria Milagro».
-- Estado en React + `localStorage` opcional.
+- Estado de Firmes y del episodio PND en `localStorage`.
+- Reportes: foto local + geo simulada. Sin denuncia real.
+- Sin logos oficiales del DNP.

@@ -1,39 +1,58 @@
-# Demo · Mi Patria Milagro
+# Demo · Firmes Season 1
 
 ## Cómo abrir
+
+**Público:** [https://earauzt.github.io/Mi-patria-milagro/](https://earauzt.github.io/Mi-patria-milagro/)
+
+**Local:**
 
 ```bash
 npm install && npm run dev
 ```
 
-Abre `http://localhost:5173` (o el puerto que indique Vite). Preferible vista móvil (~390px) en DevTools.
+Abre `http://localhost:5173/Mi-patria-milagro/` (vista móvil ~390px).
 
-## Ruta de clic (&lt; 3 minutos)
+## OTP
 
-1. **Entrar** — Celular `3001234567` → Recibir código → OTP `123456` → Municipio **Quibdó** → Continuar  
-2. **100 fichas** — Pulsa «Sugerencia demo» (o ajusta sliders hasta suma = 100) → Confirmar  
-3. **Priorizar** — Elige exactamente 3 temáticas (p. ej. Salud, Educación, Servicios públicos). Lee la nota de aplazamiento → Confirmar  
-4. **Mi municipio** — Revisa stats Quibdó (acueducto 41%, aulas 27, horas 3) → Elige prioridad local → Continuar  
-5. **La vara** — Elige 1 indicador (p. ej. Hogares con acueducto y alcantarillado) → Cerrar episodio  
-6. **Tu Colombia** — Revisa Tú / Municipio / Colombia + insignia «Constructor del Plan 1/5» → Compartir tarjeta (UI) → **Ver Colombia en vivo**  
-7. **Colombia en vivo** — Totales, barras/heatmap por región, prioridad #1 → **Volver al inicio**
+Celular de prueba: `300 123 4567`  
+Código: **`123456`**
 
-## Pantallas
+## Ruta de clic Firmes (&lt; 4 minutos)
 
-| # | ID | Título |
-|---|-----|--------|
-| 1 | entrar | Entra a participar |
-| 2 | fichas | 100 fichas |
-| 3 | priorizar | Priorizar · Milagro Social |
-| 4 | municipio | Mi municipio |
-| 5 | vara | La vara |
-| 6 | cierre | Tu Colombia |
-| 7 | tablero | Colombia en vivo |
+1. **Landing** — Entra a **Firmes Season 1** (tarjeta recomendada). El enlace de abajo abre el episodio PND.
+2. **Onboarding** — Celular → OTP `123456` → municipio **Quibdó** → elige 1–2 ejes (p. ej. Seguridad + Salud) → *Empezar Temporada 1*.
+3. **Inicio** — Mira racha, saldo (aprendidos / verificados), misión destacada y teaser del gremio.
+4. **Misión quiz** — Abre *El choque de 90 días*. Lee la marca «Dato de campaña — no auditado». Responde (pista: 90 días; 330.000 ha = no auditado). *Revisar* → *Registrar Firmes aprendidos*.
+5. **Recompensa** — Celebración, insignia y explicador. Vuelve al inicio.
+6. **Lista Salud** — Ejes → *Lista familia · 90 días* → marca las 5 casillas.
+7. **Reporte** — *Reporte ciudadano (demo)*: nota + foto opcional + *Usar ubicación demo*. Suma Firmes **verificados** (simulado).
+8. **Gremio** — Tablero local demo con tu puesto.
+9. **Perfil** — Saldo, insignias y certificado (se abre con 3 misiones, una de Seguridad y una de Salud).
+10. **Transparencia** — Cabecera *Cómo se ganan Firmes*: aprendidos vs verificados, sin dinero.
+
+Atajo de reglas: desde el landing, *Leer las reglas*.
+
+## Episodio PND (opcional)
+
+Landing → **Mi Patria Milagro / priorizar PND** → OTP `123456` → 100 fichas → 3 temáticas → municipio → la vara → Tu Colombia → tablero.
+
+## Pantallas Firmes
+
+| Ruta | Pantalla |
+|------|----------|
+| `/` | Portal (Season 1 vs PND) |
+| `/firmes/onboarding` | Celular, OTP, municipio, ejes |
+| `/firmes` | Home Temporada 1 |
+| `/firmes/mision/:id` | Quiz / lista / reporte |
+| `/firmes/recompensa` | Celebración |
+| `/firmes/ejes` | Árbol de 6 ejes |
+| `/firmes/gremio` | Gremio + posiciones |
+| `/firmes/perfil` | Firmes, insignias, certificado |
+| `/firmes/transparencia` | Reglas |
 
 ## Gaps conocidos (demo)
 
-- Sin SMS real ni autenticación.
-- Sin mapa geográfico real (heatmap por celdas de región).
-- Compartir tarjeta es solo feedback UI.
-- Municipios limitados a 5 en el picker.
-- Un solo eje con temáticas (Milagro Social).
+- Sin SMS real ni backend.
+- Geo y verificación de reportes son simuladas.
+- Cifras de campaña no se convierten en avance de gobierno.
+- Municipios limitados en el selector.
