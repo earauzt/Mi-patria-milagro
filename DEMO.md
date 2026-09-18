@@ -35,7 +35,7 @@ Código: **`123456`**
 - Una sola misión del día con un CTA
 - Lista de pendientes estilo checklist
 - Temporada 1 = 90 días Seguridad + Salud
-- Marca «Dato de campaña — no auditado» en cifras de programa
+- Marca «Dato de programa — no auditado» en cifras de programa
 
 ## Episodio PND (opcional)
 
@@ -59,6 +59,6 @@ Landing → **Mi Patria Milagro / priorizar PND** → OTP `123456` → 100 ficha
 
 - Sin SMS real ni backend.
 - Geo y verificación de reportes son simuladas.
-- Cifras de campaña no se convierten en avance de gobierno.
+- Cifras de programa no se convierten en avance de gobierno.
 - Municipios limitados en el selector.
 - El gremio no entra al loop diario.

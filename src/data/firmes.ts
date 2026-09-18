@@ -95,7 +95,7 @@ export const DAILY_TODOS: DailyTodo[] = [
   },
   {
     id: 'todo-marca',
-    text: 'Lee un dato de campaña con la marca «no auditado»',
+    text: 'Lee un dato de programa con la marca «no auditado»',
     kind: 'check',
     firmesReward: 5,
     hint: 'Las cifras del programa no son progreso de gobierno.',
@@ -113,7 +113,7 @@ export const MISSIONS: Mission[] = [
     type: 'quiz',
     title: 'El choque de 90 días',
     summary:
-      'Aprende qué propone la campaña para recuperar el control territorial en la Temporada 1.',
+      'Aprende qué propone el programa para recuperar el control territorial en la Temporada 1.',
     firmesReward: 40,
     firmesKind: 'aprendidos',
     season1Focus: true,
@@ -121,7 +121,7 @@ export const MISSIONS: Mission[] = [
     claims: [
       claim(
         'coca-330k',
-        'La campaña afirma destruir ~330.000 hectáreas de coca (fumigación, erradicación y otras herramientas).',
+        'El programa afirma destruir ~330.000 hectáreas de coca (fumigación, erradicación y otras herramientas).',
       ),
     ],
     badgeId: 'choque-90',
@@ -130,14 +130,14 @@ export const MISSIONS: Mission[] = [
       {
         id: 'q1',
         prompt:
-          'Según la propuesta de campaña, ¿cuál es el plazo del choque inicial de seguridad?',
+          'Según la propuesta del programa, ¿cuál es el plazo del choque inicial de seguridad?',
         options: [
           { id: 'a', text: '30 días', correct: false },
           { id: 'b', text: '90 días', correct: true },
           { id: 'c', text: 'Los cuatro años de gobierno', correct: false },
         ],
         explainer:
-          'El portal de propuestas habla de un plan de choque en los primeros 90 días. Eso es un anuncio de campaña, no un resultado medido.',
+          'El portal de propuestas habla de un plan de choque en los primeros 90 días. Eso es un anuncio de programa, no un resultado medido.',
       },
       {
         id: 'q2',
@@ -146,17 +146,17 @@ export const MISSIONS: Mission[] = [
           { id: 'a', text: 'Un resultado oficial ya ejecutado por el Estado', correct: false },
           {
             id: 'b',
-            text: 'Un dato de campaña — no auditado',
+            text: 'Un dato de programa — no auditado',
             correct: true,
           },
           { id: 'c', text: 'Una métrica de Firmes verificados', correct: false },
         ],
         explainer:
-          'En Firmes esa cifra siempre lleva la marca «Dato de campaña — no auditado». No es progreso de gobierno.',
+          'En Firmes esa cifra siempre lleva la marca «Dato de programa — no auditado». No es progreso de gobierno.',
       },
       {
         id: 'q3',
-        prompt: '¿Qué delitos prioriza el relato de campaña del eje Seguridad?',
+        prompt: '¿Qué delitos prioriza el programa de gobierno en el eje Seguridad?',
         options: [
           { id: 'a', text: 'Solo contrabando de mercancías', correct: false },
           {
@@ -167,7 +167,7 @@ export const MISSIONS: Mission[] = [
           { id: 'c', text: 'Únicamente delitos informáticos', correct: false },
         ],
         explainer:
-          'La campaña habla de control territorial y de un bloque de búsqueda contra la extorsión. Sigue siendo propuesta, no ejecución.',
+          'El programa habla de control territorial y de un bloque de búsqueda contra la extorsión. Sigue siendo propuesta, no ejecución.',
       },
     ],
   },
@@ -184,7 +184,7 @@ export const MISSIONS: Mission[] = [
     claims: [
       claim(
         'extorsion-bloque',
-        'La campaña propone un Bloque de Búsqueda contra la extorsión y «seguridad en el barrio».',
+        'El programa propone un Bloque de Búsqueda contra la extorsión y «seguridad en el barrio».',
       ),
     ],
     badgeId: 'vecino-firme',
@@ -193,7 +193,7 @@ export const MISSIONS: Mission[] = [
       { id: 'c2', text: 'Hablé en casa sobre no pagar extorsión y registrar intentos.' },
       { id: 'c3', text: 'Revisé si mi cuadra tiene alumbrado y rutas seguras de noche.' },
       { id: 'c4', text: 'Anoté un hecho que sí reportaría (sin datos sensibles en Firmes).' },
-      { id: 'c5', text: 'Leí que el choque de 90 días es propuesta de campaña, no un tablero oficial.' },
+      { id: 'c5', text: 'Leí que el choque de 90 días es propuesta de programa, no un tablero oficial.' },
     ],
   },
   {
@@ -209,7 +209,7 @@ export const MISSIONS: Mission[] = [
     claims: [
       claim(
         'secuestro-extorsion',
-        'La campaña prioriza extorsión y secuestro en el choque de seguridad.',
+        'El programa prioriza extorsión y secuestro en el choque de seguridad.',
       ),
     ],
     badgeId: 'reportero',
@@ -230,7 +230,7 @@ export const MISSIONS: Mission[] = [
     claims: [
       claim(
         'salud-10b',
-        'La campaña anuncia un plan de choque de COP $10 billones para rescatar el sistema de salud.',
+        'El programa anuncia un plan de choque de COP $10 billones para rescatar el sistema de salud.',
       ),
     ],
     badgeId: 'rescate-salud',
@@ -241,15 +241,15 @@ export const MISSIONS: Mission[] = [
         prompt: 'El monto de COP $10 billones para el rescate de salud es…',
         options: [
           { id: 'a', text: 'Presupuesto ejecutado y auditado de 2026', correct: false },
-          { id: 'b', text: 'Dato de campaña — no auditado', correct: true },
+          { id: 'b', text: 'Dato de programa — no auditado', correct: true },
           { id: 'c', text: 'Un Firmes verificado de tu municipio', correct: false },
         ],
         explainer:
-          'Es una pretensión de campaña. Firmes no inventa avance gubernamental ni lo convierte en meta cumplida.',
+          'Es una pretensión de programa. Firmes no inventa avance gubernamental ni lo convierte en meta cumplida.',
       },
       {
         id: 'q2',
-        prompt: '¿Qué piezas nombra la campaña para modernizar la gestión en salud?',
+        prompt: '¿Qué piezas nombra el programa para modernizar la gestión en salud?',
         options: [
           { id: 'a', text: 'Solo construir un hospital por departamento', correct: false },
           {
@@ -288,7 +288,7 @@ export const MISSIONS: Mission[] = [
     claims: [
       claim(
         'medicamentos',
-        'La campaña promete reactivar tratamientos críticos y recuperar el flujo de recursos y medicamentos.',
+        'El programa promete reactivar tratamientos críticos y recuperar el flujo de recursos y medicamentos.',
       ),
     ],
     badgeId: 'cuidador-salud',
@@ -297,7 +297,7 @@ export const MISSIONS: Mission[] = [
       { id: 'c2', text: 'Guardé soportes (fórmula, tutelas o radicados) en un solo lugar.' },
       { id: 'c3', text: 'Identifiqué Superintendencia de Salud o personería para reclamar.' },
       { id: 'c4', text: 'Leí que ADRES e historia clínica digital son anuncios, no un sistema ya unificado.' },
-      { id: 'c5', text: 'Recordé que COP $10 billones es dato de campaña — no auditado.' },
+      { id: 'c5', text: 'Recordé que COP $10 billones es dato de programa — no auditado.' },
     ],
   },
   {
@@ -313,7 +313,7 @@ export const MISSIONS: Mission[] = [
     claims: [
       claim(
         '4x1000',
-        'La campaña propone eliminar el 4×1000, condicionada en algunos textos a un recorte del aparato estatal.',
+        'El programa propone eliminar el 4×1000, condicionada en algunos textos a un recorte del aparato estatal.',
       ),
       claim(
         'top25',
@@ -338,7 +338,7 @@ export const MISSIONS: Mission[] = [
           { id: 'a', text: 'Cifras ya logradas y certificadas por el Minhacienda', correct: false },
           {
             id: 'b',
-            text: 'Pretensiones de campaña — no auditadas; no son recorte ejecutado',
+            text: 'Pretensiones de programa — no auditadas; no son recorte ejecutado',
             correct: true,
           },
           { id: 'c', text: 'Indicadores que Firmes mide en tiempo real', correct: false },
@@ -353,7 +353,7 @@ export const MISSIONS: Mission[] = [
           { id: 'a', text: 'Las publica como tablero oficial de gobierno', correct: false },
           {
             id: 'b',
-            text: 'Las muestra con la marca «Dato de campaña — no auditado»',
+            text: 'Las muestra con la marca «Dato de programa — no auditado»',
             correct: true,
           },
           { id: 'c', text: 'Las convierte en dinero para quien las comparta', correct: false },
@@ -375,16 +375,16 @@ export const MISSIONS: Mission[] = [
     claims: [
       claim(
         'credito-87',
-        'La campaña menciona crédito agropecuario alrededor del 8,7% anual, con garantías estatales.',
+        'El programa menciona crédito agropecuario alrededor del 8,7% anual, con garantías estatales.',
       ),
     ],
     quiz: [
       {
         id: 'q1',
-        prompt: 'El 8,7% de crédito de campaña es…',
+        prompt: 'El 8,7% de crédito del programa es…',
         options: [
           { id: 'a', text: 'La tasa vigente del Banco Agrario para todos', correct: false },
-          { id: 'b', text: 'Un dato de campaña — no auditado', correct: true },
+          { id: 'b', text: 'Un dato de programa — no auditado', correct: true },
           { id: 'c', text: 'Un Firmes que puedes cobrar en caja', correct: false },
         ],
         explainer:
@@ -392,7 +392,7 @@ export const MISSIONS: Mission[] = [
       },
       {
         id: 'q2',
-        prompt: 'Además de la tasa, el relato de campaña del campo incluye…',
+        prompt: 'Además de la tasa, el programa de gobierno del campo incluye…',
         options: [
           { id: 'a', text: 'Solo titulación urbana en capitales', correct: false },
           {
@@ -420,7 +420,7 @@ export const MISSIONS: Mission[] = [
     claims: [
       claim(
         'virtual-casa',
-        'La campaña propone crear la Universidad Virtual en Casa, con énfasis en IA y creadores.',
+        'El programa propone crear la Universidad Virtual en Casa, con énfasis en IA y creadores.',
       ),
       claim(
         'creditos-2',
@@ -435,7 +435,7 @@ export const MISSIONS: Mission[] = [
           { id: 'a', text: 'Ya estás matriculado en una universidad oficial', correct: false },
           {
             id: 'b',
-            text: 'Una propuesta de campaña para estudiar de forma virtual',
+            text: 'Una propuesta de programa para estudiar de forma virtual',
             correct: true,
           },
           { id: 'c', text: 'Un título que emite Firmes', correct: false },
@@ -448,7 +448,7 @@ export const MISSIONS: Mission[] = [
         prompt: 'Los créditos al ~2% para educación o vivienda son…',
         options: [
           { id: 'a', text: 'Líneas ya desembolsadas a tu cédula', correct: false },
-          { id: 'b', text: 'Dato de campaña — no auditado', correct: true },
+          { id: 'b', text: 'Dato de programa — no auditado', correct: true },
           { id: 'c', text: 'El precio de comprar Firmes', correct: false },
         ],
         explainer:
@@ -476,7 +476,7 @@ export const MISSIONS: Mission[] = [
     quiz: [
       {
         id: 'q1',
-        prompt: '¿Qué instrumentos nombra la campaña para el eje de Estado transparente?',
+        prompt: '¿Qué instrumentos nombra el programa para el eje de Estado transparente?',
         options: [
           { id: 'a', text: 'Solo un nuevo logo institucional', correct: false },
           {
@@ -561,17 +561,17 @@ export const EXPLAINERS: ExplainerDef[] = [
   {
     id: 'exp-seguridad-90',
     title: 'Qué es (y no es) el choque de 90 días',
-    body: 'La campaña describe 90 días para recuperar control territorial frente a narcotráfico, extorsión y secuestro, y menciona ~330.000 ha de coca. En Firmes eso se estudia como propuesta. No hay tablero de hectáreas erradicadas ni de capturas: esos números no están auditados aquí.',
+    body: 'El programa describe 90 días para recuperar control territorial frente a narcotráfico, extorsión y secuestro, y menciona ~330.000 ha de coca. En Firmes eso se estudia como propuesta. No hay tablero de hectáreas erradicadas ni de capturas: esos números no están auditados aquí.',
   },
   {
     id: 'exp-salud-10b',
     title: 'COP $10 billones, ADRES e historia clínica',
-    body: 'El relato de campaña habla de un choque de COP $10 billones, ADRES fortalecida, auditorías e historia clínica digital. Completar misiones de Salud suma Firmes aprendidos. No prueba que el dinero se haya apropiado ni que la historia clínica única exista.',
+    body: 'El programa de gobierno habla de un choque de COP $10 billones, ADRES fortalecida, auditorías e historia clínica digital. Completar misiones de Salud suma Firmes aprendidos. No prueba que el dinero se haya apropiado ni que la historia clínica única exista.',
   },
   {
     id: 'exp-economia-cuidado',
     title: 'Cómo leer las cifras económicas',
-    body: '4×1000, Top 25, crecimiento al 7% y un ajuste cercano a COP $70 billones aparecen en textos de campaña, a veces junto a recortes del tamaño del Estado. Firmes las etiqueta como no auditadas. No uses esta app como fuente de ejecución fiscal ni de «logros» de gobierno.',
+    body: '4×1000, Top 25, crecimiento al 7% y un ajuste cercano a COP $70 billones aparecen en textos del programa, a veces junto a recortes del tamaño del Estado. Firmes las etiqueta como no auditadas. No uses esta app como fuente de ejecución fiscal ni de «logros» de gobierno.',
   },
 ];
 

@@ -21,7 +21,7 @@ export function Transparencia() {
         <h3 className="font-bold text-gray-900">Aprendidos</h3>
         <p className="text-sm text-gov-gray mt-1.5 leading-relaxed">
           Se ganan al terminar un quiz de propuestas o una lista de 90 días.
-          Demuestran que leíste el relato de campaña. No demuestran que una
+          Demuestran que leíste el programa de gobierno. No demuestran que una
           política se haya ejecutado.
         </p>
       </section>
@@ -42,7 +42,7 @@ export function Transparencia() {
           Toda cifra de programa (330.000 ha de coca, COP $10 billones en salud,
           4×1000, Top 25, 7% de crecimiento, ajuste ~COP $70 billones, crédito
           8,7%, créditos al 2%, Universidad Virtual en Casa) es{' '}
-          <strong>dato de campaña — no auditado</strong>. Firmes no publica
+          <strong>dato de programa — no auditado</strong>. Firmes no publica
           métricas de progreso gubernamental.
         </p>
       </section>
@@ -64,7 +64,7 @@ export function Transparencia() {
       <section className="rounded-xl border border-gov-border bg-white p-4">
         <h3 className="font-bold text-gray-900">Temporada 1</h3>
         <p className="text-sm text-gov-gray mt-1.5 leading-relaxed">
-          Corresponde a los primeros 90 días del relato de campaña, con foco en
+          Corresponde a los primeros 90 días del programa de gobierno, con foco en
           Seguridad y Salud. Economía, Campo, Educación y Estado transparente
           se ofrecen en vista previa para que compares el portal completo.
         </p>
