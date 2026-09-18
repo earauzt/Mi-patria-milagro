@@ -19,10 +19,16 @@ export function Guild() {
       title="Gremio local"
       subtitle={
         muni
-          ? `${muni.nombre} · ${muni.departamento}. Posiciones de demostración.`
+          ? `${muni.nombre} · ${muni.departamento}. Tablero V1, no el loop de Hoy.`
           : 'Elige municipio en el onboarding para anclar el gremio.'
       }
     >
+      <div className="rounded-xl border border-amber-200 bg-amber-50 p-3 mb-4">
+        <p className="text-sm text-amber-950 leading-relaxed">
+          El gremio por municipio es V1. No interrumpe tu racha ni la misión del
+          día. No hay canje ni gift cards.
+        </p>
+      </div>
       <div className="rounded-xl border border-gov-border bg-white p-3 mb-4 flex justify-between">
         <div>
           <p className="text-[10px] uppercase text-gov-gray">Tu puesto</p>

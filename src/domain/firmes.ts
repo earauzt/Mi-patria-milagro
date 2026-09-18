@@ -22,6 +22,17 @@ export type FirmesScreenId =
   | 'perfil'
   | 'transparencia';
 
+export type DailyTodoKind = 'mission' | 'check';
+
+export interface DailyTodo {
+  id: string;
+  text: string;
+  kind: DailyTodoKind;
+  /** Small learned Firmes; 0 if the todo only tracks the misión del día. */
+  firmesReward: number;
+  hint?: string;
+}
+
 export interface CampaignClaim {
   id: string;
   text: string;
@@ -131,6 +142,9 @@ export interface FirmesState {
   unlockedExplainers: string[];
   certificateUnlocked: boolean;
   lastReward: RewardEvent | null;
+  /** Calendar day (YYYY-MM-DD) of the current Daily To-Do list. */
+  dailyTodoDate: string | null;
+  completedDailyTodos: string[];
 }
 
 export function createInitialFirmes(): FirmesState {
@@ -149,6 +163,8 @@ export function createInitialFirmes(): FirmesState {
     unlockedExplainers: [],
     certificateUnlocked: false,
     lastReward: null,
+    dailyTodoDate: null,
+    completedDailyTodos: [],
   };
 }
 
@@ -266,23 +282,29 @@ export function applyMissionCompletion(
     unlockedExplainers.push(mission.unlocksExplainerId);
   }
 
+  const rolled = rollDailyTodos(state, now);
+  const missionTodoDone = rolled.completedDailyTodos.includes('todo-mision');
+
   const next: FirmesState = {
-    ...state,
+    ...rolled,
     firmesAprendidos:
-      state.firmesAprendidos +
+      rolled.firmesAprendidos +
       (mission.firmesKind === 'aprendidos' ? mission.firmesReward : 0),
     firmesVerificados:
-      state.firmesVerificados +
+      rolled.firmesVerificados +
       (mission.firmesKind === 'verificados' ? mission.firmesReward : 0),
     streakDays: streak.streakDays,
     lastStreakDate: streak.lastStreakDate,
     completedMissions: {
-      ...state.completedMissions,
+      ...rolled.completedMissions,
       [mission.id]: completion,
     },
+    completedDailyTodos: missionTodoDone
+      ? rolled.completedDailyTodos
+      : [...rolled.completedDailyTodos, 'todo-mision'],
     badges,
     unlockedExplainers,
-    certificateUnlocked: state.certificateUnlocked,
+    certificateUnlocked: rolled.certificateUnlocked,
     lastReward: null,
   };
 
@@ -318,9 +340,71 @@ export function toggleEje(
   return [...current, id];
 }
 
+/** Bottom nav keeps the daily loop short. Guild is V1 and lives in Perfil. */
 export const FIRMES_NAV: { id: FirmesScreenId; to: string; label: string }[] = [
-  { id: 'home', to: '/firmes', label: 'Inicio' },
+  { id: 'home', to: '/firmes', label: 'Hoy' },
   { id: 'ejes', to: '/firmes/ejes', label: 'Ejes' },
-  { id: 'gremio', to: '/firmes/gremio', label: 'Gremio' },
   { id: 'perfil', to: '/firmes/perfil', label: 'Perfil' },
 ];
+
+export function rollDailyTodos(
+  state: FirmesState,
+  now = new Date(),
+): FirmesState {
+  const today = todayKey(now);
+  if (state.dailyTodoDate === today) return state;
+  return {
+    ...state,
+    dailyTodoDate: today,
+    completedDailyTodos: [],
+  };
+}
+
+export function hasDailyTodo(state: FirmesState, todoId: string): boolean {
+  return state.completedDailyTodos.includes(todoId);
+}
+
+export function applyDailyTodo(
+  state: FirmesState,
+  todo: DailyTodo,
+  now = new Date(),
+): FirmesState {
+  const rolled = rollDailyTodos(state, now);
+  if (hasDailyTodo(rolled, todo.id)) return rolled;
+  if (todo.kind === 'mission') {
+    return {
+      ...rolled,
+      completedDailyTodos: [...rolled.completedDailyTodos, todo.id],
+    };
+  }
+
+  const streak = nextStreak(rolled.lastStreakDate, rolled.streakDays, now);
+  return {
+    ...rolled,
+    firmesAprendidos: rolled.firmesAprendidos + todo.firmesReward,
+    streakDays: streak.streakDays,
+    lastStreakDate: streak.lastStreakDate,
+    completedDailyTodos: [...rolled.completedDailyTodos, todo.id],
+  };
+}
+
+export function pickMissionDelDia(
+  state: FirmesState,
+  missions: Mission[],
+): Mission | undefined {
+  const inFocus = (m: Mission) =>
+    state.chosenEjes.length === 0 || state.chosenEjes.includes(m.ejeId);
+
+  return (
+    missions.find(
+      (m) => m.featured && m.type === 'quiz' && !hasCompleted(state, m.id) && inFocus(m),
+    ) ??
+    missions.find(
+      (m) => m.season1Focus && m.type === 'quiz' && !hasCompleted(state, m.id),
+    ) ??
+    missions.find((m) => m.season1Focus && !hasCompleted(state, m.id)) ??
+    missions.find((m) => !hasCompleted(state, m.id)) ??
+    missions.find((m) => m.id === 'seg-quiz-90') ??
+    missions[0]
+  );
+}

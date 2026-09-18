@@ -56,7 +56,8 @@ export function Transparencia() {
           <li>· Racha y puesto en el gremio del municipio (demo)</li>
         </ul>
         <p className="text-sm text-gov-gray mt-2 leading-relaxed">
-          No hay efectivo, giros, rifas pagadas ni «compra de apoyo».
+          No hay efectivo, gift cards, giros, rifas pagadas ni «compra de
+          apoyo». Los Firmes no se canjean por dinero.
         </p>
       </section>
 

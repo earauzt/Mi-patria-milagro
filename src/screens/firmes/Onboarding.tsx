@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ClaimMark } from '../../components/ClaimMark';
 import { FirmesLayout, PrimaryButton } from '../../components/FirmesLayout';
+import { GuideBubble } from '../../components/Mascot';
 import { FIRMES_EJES } from '../../data/firmes';
 import { MUNICIPIOS } from '../../data/catalog';
 import { toggleEje, type FirmesEjeId } from '../../domain/firmes';
@@ -88,6 +89,10 @@ export function Onboarding() {
     >
       {step === 'phone' && (
         <div className="space-y-4">
+          <GuideBubble>
+            Entra con tu celular. El código de demostración es 123456. Sin SMS
+            real y sin compra de apoyo.
+          </GuideBubble>
           <label className="block">
             <span className="text-sm font-medium text-gray-800">
               Celular colombiano
@@ -109,9 +114,6 @@ export function Onboarding() {
           </label>
           {error && <p className="text-sm text-gov-red">{error}</p>}
           <PrimaryButton onClick={sendOtp}>Recibir código</PrimaryButton>
-          <p className="text-xs text-gov-gray text-center">
-            OTP fijo <strong>123456</strong>
-          </p>
         </div>
       )}
 
@@ -171,7 +173,8 @@ export function Onboarding() {
             </select>
           </label>
           <p className="text-xs text-gov-gray">
-            Tu gremio y el tablero local usan este municipio (datos demo).
+            El municipio ancla tu gremio V1 (queda en Perfil). No frena el día
+            en Hoy.
           </p>
           {error && <p className="text-sm text-gov-red">{error}</p>}
           <PrimaryButton onClick={saveMunicipio} disabled={!municipioId}>

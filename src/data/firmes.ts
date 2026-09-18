@@ -1,6 +1,7 @@
 import type {
   BadgeDef,
   CampaignClaim,
+  DailyTodo,
   ExplainerDef,
   FirmesEjeId,
   GuildMember,
@@ -68,6 +69,42 @@ export const FIRMES_EJES: EjeDef[] = [
       'Bloque anticorrupción, extinción de dominio, estatuto de contratación y trazabilidad.',
   },
 ];
+
+/** Civic Daily To-Dos for Hoy (Zivic-style). Not government KPIs. */
+export const DAILY_TODOS: DailyTodo[] = [
+  {
+    id: 'todo-mision',
+    text: 'Terminar la misión del día',
+    kind: 'mission',
+    firmesReward: 0,
+    hint: 'El quiz corto es el corazón de Hoy. Suma Firmes al instante.',
+  },
+  {
+    id: 'todo-denuncia',
+    text: 'Anota un canal local de denuncia (123, URI o personería)',
+    kind: 'check',
+    firmesReward: 5,
+    hint: 'Es un hábito cívico. No sustituye una denuncia formal.',
+  },
+  {
+    id: 'todo-salud-casa',
+    text: 'Revisa un pendiente de salud en casa (cita o medicamento)',
+    kind: 'check',
+    firmesReward: 5,
+    hint: 'Prepara a tu hogar. No es un indicador oficial de atención.',
+  },
+  {
+    id: 'todo-marca',
+    text: 'Lee un dato de campaña con la marca «no auditado»',
+    kind: 'check',
+    firmesReward: 5,
+    hint: 'Las cifras del programa no son progreso de gobierno.',
+  },
+];
+
+export function getDailyTodo(id: string): DailyTodo | undefined {
+  return DAILY_TODOS.find((t) => t.id === id);
+}
 
 export const MISSIONS: Mission[] = [
   {

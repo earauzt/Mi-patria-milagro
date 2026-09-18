@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom';
 import { ClaimMark } from '../../components/ClaimMark';
 import { Coin, FirmesLayout } from '../../components/FirmesLayout';
+import { GuideBubble } from '../../components/Mascot';
 import { getBadge, getExplainer } from '../../data/firmes';
 import { useFirmes } from '../../hooks/useFirmes';
 
@@ -15,35 +16,48 @@ export function Reward() {
   if (!reward) {
     return (
       <FirmesLayout title="Sin recompensa pendiente" backTo="/firmes">
-        <p className="text-sm text-gov-gray mb-4">
-          Completa una misión para celebrar Firmes ganados.
-        </p>
-        <Link to="/firmes" className="text-gov-blue font-semibold">
-          Ir al inicio
+        <GuideBubble mood="think">
+          Completa la misión del día en Hoy para celebrar Firmes ganados.
+        </GuideBubble>
+        <Link
+          to="/firmes"
+          className="mt-4 flex w-full items-center justify-center rounded-xl bg-gov-blue text-white font-bold py-3.5"
+        >
+          Ir a Hoy
         </Link>
       </FirmesLayout>
     );
   }
 
   return (
-    <FirmesLayout
-      title="¡Misión registrada!"
-      subtitle={reward.title}
-      showNav={false}
-    >
-      <div className="reward-burst rounded-2xl border border-yellow-300 bg-gradient-to-b from-yellow-50 to-white p-6 text-center mb-5">
+    <FirmesLayout title="¡Listo!" subtitle={reward.title} showNav={false}>
+      <div className="relative overflow-hidden reward-burst rounded-2xl border border-yellow-300 bg-gradient-to-b from-yellow-50 to-white p-6 text-center mb-5">
+        <div className="confetti" aria-hidden>
+          <span />
+          <span />
+          <span />
+          <span />
+          <span />
+          <span />
+        </div>
+        <div className="flex justify-center mb-3">
+          <GuideBubble mood="cheer">
+            Sumaste Firmes. Es aprendizaje, no un pago ni un canje.
+          </GuideBubble>
+        </div>
         <p className="text-[11px] uppercase tracking-widest text-gov-gray">
-          Sumaste
+          Recibiste
         </p>
-        <div className="flex justify-center mt-2">
+        <div className="flex justify-center mt-2 firmes-pop">
           <Coin value={reward.firmes} />
         </div>
         <p className="mt-2 text-sm font-semibold text-gov-blue">
-          Firmes {reward.kind}
+          +{reward.firmes} Firmes {reward.kind}
         </p>
         {reward.streakIncremented && (
           <p className="mt-2 text-sm text-gray-800">
-            Racha: {reward.streakDays} día{reward.streakDays === 1 ? '' : 's'}
+            🔥 Racha: {reward.streakDays} día
+            {reward.streakDays === 1 ? '' : 's'}
           </p>
         )}
       </div>
@@ -83,25 +97,17 @@ export function Reward() {
       <div className="mb-4">
         <ClaimMark />
         <p className="text-xs text-gov-gray mt-2 leading-relaxed">
-          No hay dinero, ni compra de apoyo. Los Firmes {reward.kind} no son
-          tesorería pública.
+          No hay dinero, gift cards ni compra de apoyo. Los Firmes {reward.kind}{' '}
+          no son tesorería pública.
         </p>
       </div>
 
-      <div className="space-y-2">
-        <Link
-          to="/firmes"
-          className="flex w-full items-center justify-center rounded-lg bg-gov-blue text-white font-semibold py-3.5 px-4 text-base"
-        >
-          Seguir en el inicio
-        </Link>
-        <Link
-          to="/firmes/perfil"
-          className="block text-center text-sm font-semibold text-gov-blue py-2"
-        >
-          Ver perfil y certificado
-        </Link>
-      </div>
+      <Link
+        to="/firmes"
+        className="flex w-full items-center justify-center rounded-xl bg-gov-blue text-white font-bold py-3.5 px-4 text-base shadow-[0_4px_0_#072861]"
+      >
+        Seguir en Hoy
+      </Link>
     </FirmesLayout>
   );
 }
