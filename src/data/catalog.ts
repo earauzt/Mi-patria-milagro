@@ -149,6 +149,66 @@ export const MUNICIPIOS: Municipio[] = [
       pobrezaPct: 16,
     },
   },
+  {
+    id: 'cartagena',
+    nombre: 'Cartagena',
+    departamento: 'Bolívar',
+    region: 'caribe',
+    stats: {
+      acueductoPct: 92,
+      aulasAveriadas: 9,
+      horasACabecera: 0,
+      pobrezaPct: 20,
+    },
+  },
+  {
+    id: 'cucuta',
+    nombre: 'Cúcuta',
+    departamento: 'Norte de Santander',
+    region: 'central',
+    stats: {
+      acueductoPct: 90,
+      aulasAveriadas: 11,
+      horasACabecera: 0,
+      pobrezaPct: 22,
+    },
+  },
+  {
+    id: 'bucaramanga',
+    nombre: 'Bucaramanga',
+    departamento: 'Santander',
+    region: 'central',
+    stats: {
+      acueductoPct: 96,
+      aulasAveriadas: 5,
+      horasACabecera: 0,
+      pobrezaPct: 13,
+    },
+  },
+  {
+    id: 'pasto',
+    nombre: 'Pasto',
+    departamento: 'Nariño',
+    region: 'pacifico',
+    stats: {
+      acueductoPct: 88,
+      aulasAveriadas: 10,
+      horasACabecera: 0,
+      pobrezaPct: 21,
+    },
+  },
+  {
+    id: 'villavicencio',
+    nombre: 'Villavicencio',
+    departamento: 'Meta',
+    region: 'orinoquia_amazonia',
+    stats: {
+      acueductoPct: 91,
+      aulasAveriadas: 8,
+      horasACabecera: 0,
+      pobrezaPct: 17,
+    },
+  },
 ];
 
 export const REGION_LABELS: Record<RegionId, string> = {
@@ -203,6 +263,11 @@ export const TABLERO_DEMO = {
     medellin: 'Educación y trabajo',
     cali: 'Salud para la familia',
     barranquilla: 'Educación y trabajo',
+    cartagena: 'Servicios públicos',
+    cucuta: 'Seguridad alimentaria',
+    bucaramanga: 'Educación y trabajo',
+    pasto: 'Vías y conectividad',
+    villavicencio: 'Empleo y emprendimiento local',
   } as Record<string, string>,
   colombiaTop: 'Salud para la familia',
   colombiaEjes: {

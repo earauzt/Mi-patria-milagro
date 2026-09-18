@@ -1,9 +1,11 @@
+import { useNavigate } from 'react-router-dom';
 import { Layout, PrimaryButton, SecondaryButton } from '../components/Layout';
 import { REGION_LABELS, TABLERO_DEMO } from '../data/catalog';
 import { useEpisode } from '../hooks/useEpisode';
 
 export function Tablero() {
   const { reset, setScreen } = useEpisode();
+  const navigate = useNavigate();
   const maxPeso = Math.max(...TABLERO_DEMO.regiones.map((r) => r.peso));
 
   return (
@@ -104,10 +106,10 @@ export function Tablero() {
         <PrimaryButton
           onClick={() => {
             reset();
-            setScreen('entrar');
+            navigate('/');
           }}
         >
-          Volver al inicio
+          Volver al portal Firmes
         </PrimaryButton>
         <SecondaryButton onClick={() => setScreen('cierre')}>
           Regresar a Tu Colombia

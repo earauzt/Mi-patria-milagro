@@ -3,11 +3,12 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "homepage": "https://earauzt.github.io/Mi-patria-milagro/",
   "scripts": {
     "dev": "vite",
-    "build": "tsc -b && vite build",
+    "build": "tsc -b && vite build && cp dist/index.html dist/404.html",
     "lint": "oxlint",
-    "preview": "vite preview"
+    "preview": "vite preview --base /Mi-patria-milagro/"
   },
   "dependencies": {
     "react": "^19.2.8",

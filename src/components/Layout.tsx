@@ -1,4 +1,5 @@
 import type { ReactNode } from 'react';
+import { Link } from 'react-router-dom';
 import { CITIZEN_FLOW, SCREEN_LABELS, type ScreenId } from '../domain/types';
 import { useEpisode } from '../hooks/useEpisode';
 
@@ -31,7 +32,9 @@ export function Layout({
       <header className="bg-gov-blue text-white shrink-0">
         <div className="flex items-center justify-between px-4 py-2 text-xs tracking-wide">
           <span className="font-semibold uppercase">GOV.CO</span>
-          <span className="opacity-90">Participación ciudadana</span>
+          <Link to="/" className="opacity-90 underline-offset-2 hover:underline">
+            Portal Firmes
+          </Link>
         </div>
         <div className="bg-gov-blue-dark px-4 py-3">
           <p className="text-[11px] uppercase tracking-wider text-blue-200">
