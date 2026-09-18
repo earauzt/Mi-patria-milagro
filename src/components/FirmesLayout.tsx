@@ -9,6 +9,7 @@ interface FirmesLayoutProps {
   showNav?: boolean;
   backTo?: string;
   eyebrow?: string;
+  hideHeading?: boolean;
 }
 
 export function FirmesLayout({
@@ -18,6 +19,7 @@ export function FirmesLayout({
   showNav = true,
   backTo,
   eyebrow = 'Temporada 1 · 90 días',
+  hideHeading = false,
 }: FirmesLayoutProps) {
   const navigate = useNavigate();
   const location = useLocation();
@@ -57,9 +59,13 @@ export function FirmesLayout({
             ← Volver
           </button>
         )}
-        <h2 className="text-xl font-bold text-gray-900 mb-1">{title}</h2>
-        {subtitle && (
-          <p className="text-sm text-gov-gray mb-5 leading-relaxed">{subtitle}</p>
+        {!hideHeading && (
+          <>
+            <h2 className="text-xl font-bold text-gray-900 mb-1">{title}</h2>
+            {subtitle && (
+              <p className="text-sm text-gov-gray mb-5 leading-relaxed">{subtitle}</p>
+            )}
+          </>
         )}
         {children}
       </main>

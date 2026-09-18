@@ -40,11 +40,9 @@ export function Home() {
       : `Racha de ${state.streakDays} día${state.streakDays === 1 ? '' : 's'}. Sigue con una sola misión.`;
 
   return (
-    <FirmesLayout
-      title="Hoy"
-      subtitle="Temporada 1 · 90 días · Seguridad + Salud. Los Firmes miden aprendizaje, no resultados de gobierno."
-    >
-      <div className="grid grid-cols-2 gap-2 mb-4">
+    <FirmesLayout title="Hoy" hideHeading>
+      <h2 className="sr-only">Hoy</h2>
+      <div className="grid grid-cols-2 gap-2 mb-3">
         <div className="rounded-2xl border border-orange-200 bg-orange-50/80 p-3">
           <FireStreak days={state.streakDays} />
         </div>
@@ -167,8 +165,9 @@ export function Home() {
       </section>
 
       <p className="text-xs text-gov-gray leading-relaxed mb-3">
-        El gremio por municipio queda en Perfil (V1). Hoy es solo racha, misión y
-        pendientes. Los Firmes no se compran ni se canjean por dinero.
+        Temporada 1 · 90 días · Seguridad + Salud. Los Firmes miden aprendizaje,
+        no resultados de gobierno. El gremio queda en Perfil (V1). No se compran
+        ni se canjean por dinero.
       </p>
       <Link to="/firmes/transparencia" className="block text-sm text-gov-gray">
         Cómo se ganan Firmes
