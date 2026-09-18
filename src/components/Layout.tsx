@@ -7,6 +7,7 @@ interface LayoutProps {
   title: string;
   subtitle?: string;
   showProgress?: boolean;
+  actions?: ReactNode;
 }
 
 export function Layout({
@@ -14,6 +15,7 @@ export function Layout({
   title,
   subtitle,
   showProgress = true,
+  actions,
 }: LayoutProps) {
   const { screen } = useEpisode();
   const flowIndex = CITIZEN_FLOW.indexOf(screen);
@@ -28,7 +30,7 @@ export function Layout({
   return (
     <div className="app-shell">
       {/* GOV.CO-style top bar */}
-      <header className="bg-gov-blue text-white shrink-0">
+      <header className="bg-gov-blue text-white shrink-0 pt-[env(safe-area-inset-top)]">
         <div className="flex items-center justify-between px-4 py-2 text-xs tracking-wide">
           <span className="font-semibold uppercase">GOV.CO</span>
           <span className="opacity-90">Participación ciudadana</span>
@@ -58,6 +60,7 @@ export function Layout({
               className="h-full bg-gov-blue transition-all duration-300 rounded-full"
               style={{ width: `${progress}%` }}
               role="progressbar"
+              aria-label="Progreso del episodio"
               aria-valuenow={Math.round(progress)}
               aria-valuemin={0}
               aria-valuemax={100}
@@ -74,7 +77,13 @@ export function Layout({
         {children}
       </main>
 
-      <footer className="shrink-0 border-t border-gov-border bg-white px-4 py-2 text-center text-[10px] text-gov-gray">
+      {actions && (
+        <div className="shrink-0 border-t border-gov-border bg-gov-bg px-4 pt-3 pb-3">
+          {actions}
+        </div>
+      )}
+
+      <footer className="shrink-0 border-t border-gov-border bg-white px-4 py-2 pb-[max(0.5rem,env(safe-area-inset-bottom))] text-center text-[10px] text-gov-gray">
         Demo ilustrativa · Sin vínculo oficial DNP · Datos de demostración
       </footer>
     </div>

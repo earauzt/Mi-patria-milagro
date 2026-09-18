@@ -40,6 +40,7 @@ export function Priorizar() {
   }
 
   function confirm() {
+    if (selected.length !== MAX) return;
     update({ tematicas: selected, postponedNote: note });
     setScreen('municipio');
   }
@@ -48,6 +49,11 @@ export function Priorizar() {
     <Layout
       title="Priorizar · Milagro Social"
       subtitle={`Elige exactamente ${MAX} temáticas. Al seleccionar, otras opciones se posponen en este episodio.`}
+      actions={
+        <PrimaryButton disabled={selected.length !== MAX} onClick={confirm}>
+          Confirmar 3 temáticas
+        </PrimaryButton>
+      }
     >
       <p className="text-xs font-medium text-gov-blue mb-3">
         Seleccionadas: {selected.length} / {MAX}
@@ -66,6 +72,7 @@ export function Priorizar() {
                     ? 'border-gov-blue bg-gov-blue-light text-gov-blue-dark ring-1 ring-gov-blue'
                     : 'border-gov-border bg-white text-gray-800 hover:border-gov-blue/40'
                 }`}
+                aria-pressed={on}
               >
                 <span className="inline-flex items-center gap-2">
                   <span
@@ -93,10 +100,6 @@ export function Priorizar() {
           {note}
         </div>
       )}
-
-      <PrimaryButton disabled={selected.length !== MAX} onClick={confirm}>
-        Confirmar 3 temáticas
-      </PrimaryButton>
     </Layout>
   );
 }

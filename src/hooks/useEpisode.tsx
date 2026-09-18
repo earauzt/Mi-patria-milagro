@@ -2,10 +2,17 @@ import {
   createContext,
   useCallback,
   useContext,
+  useEffect,
   useMemo,
   useState,
   type ReactNode,
 } from 'react';
+import {
+  INDICADORES,
+  MUNICIPIOS,
+  PRIORIDADES_LOCALES,
+  TEMATICAS_MILAGRO_SOCIAL,
+} from '../data/catalog';
 import {
   ALL_SCREENS,
   createInitialEpisode,
@@ -53,25 +60,33 @@ function normalizeEpisode(raw: unknown): EpisodeState {
     phone: typeof parsed.phone === 'string' ? normalizePhone(parsed.phone) : base.phone,
     otpVerified: Boolean(parsed.otpVerified),
     municipioId:
-      parsed.municipioId === null || typeof parsed.municipioId === 'string'
+      typeof parsed.municipioId === 'string' &&
+      MUNICIPIOS.some((m) => m.id === parsed.municipioId)
         ? parsed.municipioId
-        : base.municipioId,
+        : null,
     fichas: normalizeFichas(parsed.fichas),
     tematicas: Array.isArray(parsed.tematicas)
-      ? parsed.tematicas.filter((id): id is string => typeof id === 'string')
+      ? parsed.tematicas.filter(
+          (id, i, arr): id is string =>
+            typeof id === 'string' &&
+            TEMATICAS_MILAGRO_SOCIAL.some((t) => t.id === id) &&
+            arr.indexOf(id) === i,
+        )
       : base.tematicas,
     postponedNote:
       parsed.postponedNote === null || typeof parsed.postponedNote === 'string'
         ? parsed.postponedNote
         : base.postponedNote,
     prioridadLocal:
-      parsed.prioridadLocal === null || typeof parsed.prioridadLocal === 'string'
+      typeof parsed.prioridadLocal === 'string' &&
+      (PRIORIDADES_LOCALES as string[]).includes(parsed.prioridadLocal)
         ? parsed.prioridadLocal
-        : base.prioridadLocal,
+        : null,
     indicadorId:
-      parsed.indicadorId === null || typeof parsed.indicadorId === 'string'
+      typeof parsed.indicadorId === 'string' &&
+      INDICADORES.some((item) => item.id === parsed.indicadorId)
         ? parsed.indicadorId
-        : base.indicadorId,
+        : null,
     completedAt:
       parsed.completedAt === null || typeof parsed.completedAt === 'string'
         ? parsed.completedAt
@@ -139,6 +154,42 @@ const EpisodeContext = createContext<EpisodeContextValue | null>(null);
 export function EpisodeProvider({ children }: { children: ReactNode }) {
   const [{ episode, screen }, setState] = useState<Persisted>(load);
 
+  useEffect(() => {
+    const restored = load();
+    history.replaceState({ mpmScreen: restored.screen }, '');
+
+    const onPop = (e: PopStateEvent) => {
+      const raw =
+        e.state && typeof e.state === 'object'
+          ? (e.state as { mpmScreen?: unknown }).mpmScreen
+          : undefined;
+      const requested = isScreenId(raw) ? raw : 'entrar';
+      setState((prev) => {
+        const resolved = resolveScreen(prev.episode, requested);
+        const next = { ...prev, screen: resolved };
+        save(next);
+        if (resolved !== requested) {
+          history.replaceState({ ...(e.state || {}), mpmScreen: resolved }, '');
+        }
+        return next;
+      });
+    };
+
+    const onStorage = (ev: StorageEvent) => {
+      if (ev.key !== STORAGE_KEY) return;
+      const next = load();
+      setState(next);
+      history.replaceState({ mpmScreen: next.screen }, '');
+    };
+
+    window.addEventListener('popstate', onPop);
+    window.addEventListener('storage', onStorage);
+    return () => {
+      window.removeEventListener('popstate', onPop);
+      window.removeEventListener('storage', onStorage);
+    };
+  }, []);
+
   const update = useCallback((patch: Partial<EpisodeState>) => {
     setState((prev) => {
       const next = { ...prev, episode: { ...prev.episode, ...patch } };
@@ -148,9 +199,15 @@ export function EpisodeProvider({ children }: { children: ReactNode }) {
   }, []);
 
   const setScreen = useCallback((s: ScreenId) => {
+    let pushed = false;
     setState((prev) => {
+      if (prev.screen === s) return prev;
       const next = { ...prev, screen: s };
       save(next);
+      if (!pushed) {
+        history.pushState({ mpmScreen: s }, '');
+        pushed = true;
+      }
       return next;
     });
   }, []);
@@ -179,6 +236,7 @@ export function EpisodeProvider({ children }: { children: ReactNode }) {
     };
     save(fresh);
     setState(fresh);
+    history.replaceState({ mpmScreen: 'entrar' }, '');
   }, []);
 
   const value = useMemo(

@@ -3,13 +3,25 @@ import { REGION_LABELS, TABLERO_DEMO } from '../data/catalog';
 import { useEpisode } from '../hooks/useEpisode';
 
 export function Tablero() {
-  const { reset, setScreen } = useEpisode();
+  const { reset, setScreen, episode } = useEpisode();
   const maxPeso = Math.max(...TABLERO_DEMO.regiones.map((r) => r.peso));
 
   return (
     <Layout
       title="Colombia en vivo"
       subtitle="Totales de participación y prioridad #1 por región (datos de demostración)."
+      actions={
+        <div className="space-y-2">
+          <PrimaryButton onClick={reset}>Volver al inicio</PrimaryButton>
+          <SecondaryButton
+            onClick={() =>
+              setScreen(episode.indicadorId ? 'cierre' : 'entrar')
+            }
+          >
+            Regresar a Tu Colombia
+          </SecondaryButton>
+        </div>
+      }
     >
       <div className="grid grid-cols-3 gap-2 mb-5">
         <Metric
@@ -39,9 +51,9 @@ export function Tablero() {
                   : 'bg-blue-400';
           return (
             <div key={r.id}>
-              <div className="flex justify-between text-xs mb-1">
-                <span className="font-medium">{REGION_LABELS[r.id]}</span>
-                <span className="text-gov-gray tabular-nums">
+              <div className="flex justify-between gap-2 text-xs mb-1 min-w-0">
+                <span className="font-medium min-w-0">{REGION_LABELS[r.id]}</span>
+                <span className="text-gov-gray tabular-nums shrink-0">
                   {r.participaciones.toLocaleString('es-CO')} · índice {r.peso}
                 </span>
               </div>
@@ -67,7 +79,7 @@ export function Tablero() {
           return (
             <div
               key={r.id}
-              className="rounded-lg p-3 text-white text-center min-h-[72px] flex flex-col justify-center"
+              className="rounded-lg p-3 text-white text-center min-h-[72px] flex flex-col justify-center last:col-span-2"
               style={{
                 backgroundColor: `rgba(11, 59, 140, ${0.35 + intensity * 0.65})`,
               }}
@@ -90,31 +102,22 @@ export function Tablero() {
         {TABLERO_DEMO.regiones.map((r) => (
           <li
             key={r.id}
-            className="px-3 py-2.5 flex justify-between gap-2 text-sm"
+            className="px-3 py-2.5 flex justify-between gap-2 text-sm min-w-0"
           >
-            <span className="font-medium text-gray-800">
+            <span className="font-medium text-gray-800 min-w-0">
               {REGION_LABELS[r.id]}
             </span>
-            <span className="text-gov-blue text-right">{r.prioridad}</span>
+            <span className="text-gov-blue text-right shrink-0">{r.prioridad}</span>
           </li>
         ))}
       </ul>
-
-      <div className="space-y-2">
-        <PrimaryButton onClick={reset}>
-          Volver al inicio
-        </PrimaryButton>
-        <SecondaryButton onClick={() => setScreen('cierre')}>
-          Regresar a Tu Colombia
-        </SecondaryButton>
-      </div>
     </Layout>
   );
 }
 
 function Metric({ value, label }: { value: string; label: string }) {
   return (
-    <div className="bg-white border border-gov-border rounded-lg px-2 py-3 text-center">
+    <div className="bg-white border border-gov-border rounded-lg px-2 py-3 text-center min-w-0">
       <p className="text-lg font-bold text-gov-blue tabular-nums leading-tight">
         {value}
       </p>

@@ -24,6 +24,18 @@ export function MunicipioScreen() {
     <Layout
       title={`Mi municipio · ${muni.nombre}`}
       subtitle={`${muni.departamento} · Datos demo tipo TerriData para orientar tu prioridad local.`}
+      actions={
+        <PrimaryButton
+          disabled={!PRIORIDADES_LOCALES.includes(prioridad)}
+          onClick={() => {
+            if (!PRIORIDADES_LOCALES.includes(prioridad)) return;
+            update({ prioridadLocal: prioridad });
+            setScreen('vara');
+          }}
+        >
+          Continuar a La vara
+        </PrimaryButton>
+      }
     >
       <div className="grid grid-cols-1 gap-3 mb-5">
         <StatCard
@@ -48,16 +60,17 @@ export function MunicipioScreen() {
         <p className="text-[11px] text-gov-gray mb-4 italic">{stats.nota}</p>
       )}
 
-      <label className="block mb-4">
-        <span className="text-sm font-medium text-gray-800">
+      <fieldset className="block mb-0 min-w-0 border-0 p-0 m-0">
+        <legend className="text-sm font-medium text-gray-800 px-0">
           ¿Cuál es tu prioridad local?
-        </span>
+        </legend>
         <div className="mt-2 space-y-2">
           {PRIORIDADES_LOCALES.map((p) => (
             <button
               key={p}
               type="button"
               onClick={() => setPrioridad(p)}
+              aria-pressed={prioridad === p}
               className={`w-full text-left rounded-lg border px-3 py-2.5 text-sm ${
                 prioridad === p
                   ? 'border-gov-blue bg-gov-blue-light text-gov-blue-dark font-semibold'
@@ -68,17 +81,7 @@ export function MunicipioScreen() {
             </button>
           ))}
         </div>
-      </label>
-
-      <PrimaryButton
-        disabled={!prioridad}
-        onClick={() => {
-          update({ prioridadLocal: prioridad });
-          setScreen('vara');
-        }}
-      >
-        Continuar a La vara
-      </PrimaryButton>
+      </fieldset>
     </Layout>
   );
 }

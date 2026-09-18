@@ -52,7 +52,7 @@ export function Entrar() {
   }
 
   function continueNext() {
-    if (!municipioId) {
+    if (!MUNICIPIOS.some((m) => m.id === municipioId)) {
       setError('Selecciona tu municipio.');
       return;
     }
@@ -77,22 +77,28 @@ export function Entrar() {
             <span className="text-sm font-medium text-gray-800">
               Celular colombiano
             </span>
-            <div className="mt-1.5 flex rounded-lg border border-gov-border bg-white overflow-hidden focus-within:ring-2 focus-within:ring-gov-blue">
-              <span className="px-3 py-3 bg-gray-50 text-gov-gray text-sm border-r border-gov-border">
-                +57
-              </span>
-              <input
-                type="tel"
-                inputMode="numeric"
-                placeholder="300 123 4567"
-                value={formatPhone(phone)}
-                onChange={(e) => setPhone(toCoMobile(e.target.value))}
-                className="flex-1 px-3 py-3 text-base outline-none"
-                autoComplete="tel"
-              />
+            <div className="mt-1.5 rounded-lg focus-within:ring-2 focus-within:ring-gov-blue">
+              <div className="flex rounded-lg border border-gov-border bg-white overflow-hidden">
+                <span className="px-3 py-3 bg-gray-50 text-gov-gray text-sm border-r border-gov-border">
+                  +57
+                </span>
+                <input
+                  type="tel"
+                  inputMode="numeric"
+                  placeholder="300 123 4567"
+                  value={formatPhone(phone)}
+                  onChange={(e) => setPhone(toCoMobile(e.target.value))}
+                  className="flex-1 px-3 py-3 text-base outline-none placeholder:text-gray-400"
+                  autoComplete="tel"
+                />
+              </div>
             </div>
           </label>
-          {error && <p className="text-sm text-gov-red">{error}</p>}
+          {error && (
+            <p className="text-sm text-gov-red" role="alert">
+              {error}
+            </p>
+          )}
           <PrimaryButton type="submit">Recibir código</PrimaryButton>
           <p className="text-xs text-gov-gray text-center">
             Demo: cualquier celular 3XX… · OTP fijo <strong>123456</strong>
@@ -122,10 +128,15 @@ export function Entrar() {
               placeholder="123456"
               value={otp}
               onChange={(e) => setOtp(e.target.value.replace(/\D/g, '').slice(0, 6))}
-              className="mt-1.5 w-full rounded-lg border border-gov-border px-3 py-3 text-center text-2xl tracking-[0.4em] font-mono outline-none focus:ring-2 focus:ring-gov-blue"
+              className="mt-1.5 w-full rounded-lg border border-gov-border px-3 py-3 text-center text-2xl tracking-[0.2em] font-mono outline-none placeholder:text-gray-400 focus:ring-2 focus:ring-gov-blue"
+              autoFocus
             />
           </label>
-          {error && <p className="text-sm text-gov-red">{error}</p>}
+          {error && (
+            <p className="text-sm text-gov-red" role="alert">
+              {error}
+            </p>
+          )}
           <PrimaryButton type="submit" disabled={otp.length < 6}>
             Verificar
           </PrimaryButton>
@@ -167,8 +178,15 @@ export function Entrar() {
               ))}
             </select>
           </label>
-          {error && <p className="text-sm text-gov-red">{error}</p>}
-          <PrimaryButton type="submit" disabled={!municipioId}>
+          {error && (
+            <p className="text-sm text-gov-red" role="alert">
+              {error}
+            </p>
+          )}
+          <PrimaryButton
+            type="submit"
+            disabled={!MUNICIPIOS.some((m) => m.id === municipioId)}
+          >
             Continuar
           </PrimaryButton>
         </form>

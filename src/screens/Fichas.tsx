@@ -35,6 +35,42 @@ export function Fichas() {
     <Layout
       title="100 fichas"
       subtitle="Reparte el peso relativo entre los seis ejes del Plan. La suma debe ser exactamente 100."
+      actions={
+        <>
+          <div className="flex gap-2 mb-3">
+            <button
+              type="button"
+              onClick={distributeEven}
+              className="flex-1 text-xs py-2 rounded border border-gov-border bg-white text-gov-gray"
+            >
+              Distribuir igual
+            </button>
+            <button
+              type="button"
+              onClick={suggestSocial}
+              className="flex-1 text-xs py-2 rounded border border-gov-border bg-white text-gov-gray"
+            >
+              Sugerencia demo
+            </button>
+          </div>
+          {!canConfirm && (
+            <p className="text-xs text-gov-gray mb-3 text-center">
+              {remaining > 0
+                ? `Te faltan ${remaining} fichas por asignar.`
+                : `Quita ${Math.abs(remaining)} fichas para llegar a 100.`}
+            </p>
+          )}
+          <PrimaryButton
+            disabled={!canConfirm}
+            onClick={() => {
+              if (fichasSum(episode.fichas) !== 100) return;
+              setScreen('priorizar');
+            }}
+          >
+            Confirmar distribución
+          </PrimaryButton>
+        </>
+      }
     >
       <div
         className={`mb-4 rounded-lg px-3 py-2 text-sm font-semibold flex justify-between items-center ${
@@ -49,11 +85,11 @@ export function Fichas() {
         <span className="text-lg tabular-nums">{sum} / 100</span>
       </div>
 
-      <div className="space-y-4 mb-5">
+      <div className="space-y-3 mb-5">
         {EJES.map((eje) => {
           const val = episode.fichas[eje.id] ?? 0;
           return (
-            <div key={eje.id} className="bg-white rounded-lg border border-gov-border p-3">
+            <div key={eje.id} className="bg-white rounded-lg border border-gov-border p-2.5">
               <div className="flex justify-between gap-2 mb-2">
                 <label className="text-sm font-medium text-gray-900 leading-snug">
                   {eje.nombre}
@@ -75,38 +111,6 @@ export function Fichas() {
           );
         })}
       </div>
-
-      <div className="flex gap-2 mb-4">
-        <button
-          type="button"
-          onClick={distributeEven}
-          className="flex-1 text-xs py-2 rounded border border-gov-border bg-white text-gov-gray"
-        >
-          Distribuir igual
-        </button>
-        <button
-          type="button"
-          onClick={suggestSocial}
-          className="flex-1 text-xs py-2 rounded border border-gov-border bg-white text-gov-gray"
-        >
-          Sugerencia demo
-        </button>
-      </div>
-
-      {!canConfirm && (
-        <p className="text-xs text-gov-gray mb-3 text-center">
-          {remaining > 0
-            ? `Te faltan ${remaining} fichas por asignar.`
-            : `Quita ${Math.abs(remaining)} fichas para llegar a 100.`}
-        </p>
-      )}
-
-      <PrimaryButton
-        disabled={!canConfirm}
-        onClick={() => setScreen('priorizar')}
-      >
-        Confirmar distribución
-      </PrimaryButton>
     </Layout>
   );
 }

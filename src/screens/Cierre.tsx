@@ -12,23 +12,32 @@ import { useEpisode } from '../hooks/useEpisode';
 export function Cierre() {
   const { episode, setScreen } = useEpisode();
   const [shared, setShared] = useState(false);
-  const muni = getMunicipio(episode.municipioId);
+    const muni = getMunicipio(episode.municipioId);
 
   const topEje = EJES.reduce((best, e) =>
-    episode.fichas[e.id] > episode.fichas[best.id] ? e : best,
+    (episode.fichas[e.id] ?? 0) > (episode.fichas[best.id] ?? 0) ? e : best,
   );
   const misTemas = TEMATICAS_MILAGRO_SOCIAL.filter((t) =>
     episode.tematicas.includes(t.id),
   );
   const miTopTema = misTemas[0]?.nombre ?? '—';
-  const muniTop =
-    (muni && TABLERO_DEMO.municipioTop[muni.id]) || 'Servicios públicos';
+  const muniTop = muni ? (TABLERO_DEMO.municipioTop[muni.id] ?? '—') : '—';
   const ind = INDICADORES.find((i) => i.id === episode.indicadorId);
 
   return (
     <Layout
       title="Tu Colombia"
       subtitle="Comparación de prioridades: tú, tu municipio y el país (datos demo)."
+      actions={
+        <div className="space-y-2">
+          <SecondaryButton onClick={() => setShared(true)}>
+            Compartir tarjeta
+          </SecondaryButton>
+          <PrimaryButton onClick={() => setScreen('tablero')}>
+            Ver Colombia en vivo
+          </PrimaryButton>
+        </div>
+      }
     >
       <div className="flex justify-center mb-5">
         <div className="inline-flex items-center gap-2 rounded-full bg-gov-blue text-white px-4 py-2 text-sm font-semibold shadow">
@@ -79,15 +88,6 @@ export function Cierre() {
           menú nativo de compartir.
         </p>
       )}
-
-      <div className="space-y-2">
-        <SecondaryButton onClick={() => setShared(true)}>
-          Compartir tarjeta
-        </SecondaryButton>
-        <PrimaryButton onClick={() => setScreen('tablero')}>
-          Ver Colombia en vivo
-        </PrimaryButton>
-      </div>
     </Layout>
   );
 }
